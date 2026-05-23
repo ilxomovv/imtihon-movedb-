@@ -3,10 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-body {
-  display: flex;
-  justify-content: center;
-}
+
 .navbar {
   background-color: rgb(3 37 65);
   display: flex;
@@ -37,11 +34,10 @@ body {
   cursor: pointer;
   padding: 0;
 }
-
 .dropdown-content {
   display: none;
   position: absolute;
-  top: 10px;
+  top: 100%;
   left: 0;
   background-color: white;
   min-width: 170px;
@@ -49,9 +45,8 @@ body {
   border-radius: 8px;
   margin-top: 10px;
   padding: 8px 0;
-  z-index: 1;
+  z-index: 10000;
 }
-
 .dropdown-content a {
   color: black;
   padding: 10px 20px;
@@ -59,11 +54,9 @@ body {
   display: block;
   font-size: 15px;
 }
-
 .dropdown-content a:hover {
   background-color: #d1d1d1;
 }
-
 .dropdown:hover .dropdown-content {
   display: block;
 }
@@ -114,4 +107,45 @@ body {
   gap: 18px;
   padding-left: 315px;
   padding-right: 0px;
+}
+.pastroqi {
+  position: sticky;
+  top: 0px;
+  z-index: 9999;
+  width: 100%;
+  background-color: #ffffff;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 12px 25px;
+  width: 100%;
+  padding-left: 131px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.search-icon {
+  font-size: 1.1rem;
+  color: #757575;
+  margin-right: 15px;
+  user-select: none;
+}
+.search-field {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  color: #333333;
+  font-family: "Segoe UI", sans-serif;
+  background: transparent;
+}
+.search-field::placeholder {
+  color: #b0bec5;
+  font-style: italic;
+}
+.result-img {
+  display: block;
+  margin: 50px auto;
+  max-width: 80%;
+  max-height: 50vh;
 }

@@ -823,6 +823,189 @@
   color: #01b4e4;
 }
 
+/* Asosiy konteyner - kartalarni majburiy gorizontal qatorga tizadi */
+.movies-container {
+  display: flex !important; /* Kartalarni yonma-yon qilish */
+  flex-direction: row !important; /* Yo'nalishni qator qilish */
+  gap: 20px; /* Kartalar orasidagi masofa */
+  padding: 20px 10px;
+  overflow-x: auto; /* Yon tomonga scroll qilishni yoqish */
+  white-space: nowrap; /* Matnlar pastga tushib ketmasligi uchun */
+  scroll-behavior: smooth;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Scrollbarni chiroyli qilish */
+.movies-container::-webkit-scrollbar {
+  height: 6px;
+}
+.movies-container::-webkit-scrollbar-thumb {
+  background: #26a69a;
+  border-radius: 10px;
+}
+
+/* Har bir kino kartasining o'lchami */
+.movilCart {
+  flex: 0 0 180px; /* Kenglikni 180px da qat'iy qotirish */
+  width: 180px; /* Cho'zilib ketishining oldini oladi */
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+/* Rasm o'lchamlarini jilovlash */
+.movilCart img {
+  width: 100% !important;
+  height: 260px !important; /* Bo'yi qat'iy 260px bo'ladi */
+  object-fit: cover; /* Rasm shakli buzilmay joylashadi */
+  border-radius: 12px;
+}
+
+/* Kino nomi */
+.movilCart h1 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 10px 0 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Uzun nomlarni '...' qiladi */
+}
+
+/* Sana */
+.movilCart p {
+  font-size: 12px;
+  color: #757575;
+  margin: 0;
+}
+.popularSection {
+  max-width: 1300px;
+  margin: 30px auto;
+  padding: 0 20px;
+  font-family: "Source Sans Pro", Arial, sans-serif;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.sectionHeader h2 {
+  font-size: 1.4em;
+  font-weight: 600;
+  margin: 0;
+  color: #000000;
+}
+
+.selectorBtn {
+  background-color: #032541;
+  color: #01b4e4;
+  padding: 5px 15px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.popularSlider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 15px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.popularSlider::-webkit-scrollbar {
+  height: 8px;
+}
+
+.popularSlider::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.popularSlider::-webkit-scrollbar-thumb {
+  background: #dbdbdb;
+  border-radius: 10px;
+}
+
+.popularSlider::-webkit-scrollbar-thumb:hover {
+  background: #b5b5b5;
+}
+
+.movieCard {
+  min-width: 150px;
+  max-width: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 225px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.imageContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.optionsBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: #000000;
+  cursor: pointer;
+}
+
+.optionsBtn:hover {
+  background: #01b4e4;
+  color: #ffffff;
+}
+
+.movieMeta {
+  padding-top: 10px;
+}
+
+.movieTitle {
+  font-size: 0.95em;
+  font-weight: 700;
+  color: #000000;
+  text-decoration: none;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.2;
+}
+
+.movieTitle:hover {
+  color: #01b4e4;
+}
+
+.movieDate {
+  font-size: 0.85em;
+  color: #666666;
+  margin: 5px 0 0 0;
+}
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;

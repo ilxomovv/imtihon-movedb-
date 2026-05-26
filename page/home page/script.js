@@ -8,10 +8,10 @@ const options = {
   },
 };
 
-function getInfo(params) {
+function getInfo() {
   try {
     return fetch(
-      "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc",
+      "https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc",
       options,
     )
       .then((res) => res.json())
@@ -21,7 +21,7 @@ function getInfo(params) {
   }
 }
 
-(async function (params) {
+(async function () {
   let resultMovies = document.getElementById("trendingMovies");
   let data = await getInfo();
   let movies = data["results"];
@@ -132,7 +132,7 @@ async function loadPopularShows() {
         <div class="movieCard">
           <div class="imageContainer">
             <img src="${posterPath}" alt="${show.name}">
-            <div class="optionsBtn">•••</div>
+            <div class="optionsBtn">❤️</div>
           </div>
           <div class="movieMeta">
             <a href="/page/movieDetail/index.html?id=${show.id}" class="movieTitle">${show.name}</a>

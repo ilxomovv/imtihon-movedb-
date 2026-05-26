@@ -2,7 +2,6 @@ let id = window.location.href.slice(window.location.href.indexOf("=") + 1);
 const MEDIAL_LINK = "https://media.themoviedb.org/t/p/w200";
 const MEDIAL_BG = "https://media.themoviedb.org/t/p/w500";
 
-// Siz bergan yangi token shu yerga qo'yildi
 const options = {
   method: "GET",
   headers: {
@@ -12,7 +11,6 @@ const options = {
   },
 };
 
-// 1. Film ma'lumotlarini olish funksiyasi
 async function getInfoDetailScreen() {
   try {
     let res = await fetch(
@@ -27,7 +25,6 @@ async function getInfoDetailScreen() {
   }
 }
 
-// 2. Aktyorlar ma'lumotlarini olish funksiyasi
 async function getCredits(movieId) {
   try {
     let res = await fetch(
@@ -42,7 +39,6 @@ async function getCredits(movieId) {
   }
 }
 
-// 3. Asosiy render qilish funksiyasi
 (async function () {
   let result = document.getElementById("result");
 
@@ -51,7 +47,6 @@ async function getCredits(movieId) {
     return;
   }
 
-  // Ma'lumotlarni parallel ravishda chaqiramiz (Tezroq yuklanadi)
   const [info, credits] = await Promise.all([
     getInfoDetailScreen(),
     getCredits(id),
@@ -66,10 +61,8 @@ async function getCredits(movieId) {
   let percent = Math.round((info.vote_average || 0) * 10);
   let releaseYear = info.release_date ? info.release_date.slice(0, 4) : "N/A";
 
-  // Aktyorlar HTML qismini shakllantiramiz
   let castHtml = "";
   if (credits && credits.cast && credits.cast.length > 0) {
-    // Rasmda bor-yo'qligiga qarab dastlabki 15 ta aktyorni olamiz
     credits.cast.slice(0, 15).forEach((actor) => {
       let profilePath = actor.profile_path
         ? MEDIAL_LINK + actor.profile_path
@@ -89,7 +82,6 @@ async function getCredits(movieId) {
     castHtml = "<p>Aktyorlar haqida ma'lumot topilmadi yoki yuklanmadi.</p>";
   }
 
-  // Sahifaga umumiy HTML ni chiqaramiz
   result.innerHTML = `
     <div class="movieDetail">
       <img class="movieBg" src="${MEDIAL_BG + (info.backdrop_path || "")}" alt="">

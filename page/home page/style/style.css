@@ -210,7 +210,10 @@
   padding: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-
+.join_today {
+  background-image: url(../../../Assets/img/png/photo_2026-05-26_13-35-45.jpg);
+  background-repeat: no-repeat;
+}
 .search-container input {
   flex: 1;
   border: none;
@@ -218,7 +221,7 @@
   background: transparent;
   padding: 14px 25px;
   font-size: 16px;
-  color: #acacac;
+  color: black;
 }
 
 .search-container input::placeholder {
@@ -304,8 +307,8 @@
 
 .image-container {
   position: relative;
-  width: 150px;
-  height: 225px;
+  width: 180px;
+  height: 260px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -560,8 +563,8 @@
 
 .image-container {
   position: relative;
-  width: 150px;
-  height: 225px;
+  width: 180px;
+  height: 260px;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -823,29 +826,26 @@
   color: #01b4e4;
 }
 
-/* Asosiy konteyner - kartalarni majburiy gorizontal qatorga tizadi */
 .movies-container {
-  display: flex !important; /* Kartalarni yonma-yon qilish */
-  flex-direction: row !important; /* Yo'nalishni qator qilish */
-  gap: 20px; /* Kartalar orasidagi masofa */
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 20px;
   padding: 20px 10px;
-  overflow-x: auto; /* Yon tomonga scroll qilishni yoqish */
-  white-space: nowrap; /* Matnlar pastga tushib ketmasligi uchun */
+  overflow-x: auto;
+  white-space: nowrap;
   scroll-behavior: smooth;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* Scrollbarni chiroyli qilish */
 .movies-container::-webkit-scrollbar {
   height: 6px;
 }
 .movies-container::-webkit-scrollbar-thumb {
-  background: #26a69a;
+  background: #a4a4a4;
   border-radius: 10px;
 }
 
-/* Har bir kino kartasining o'lchami */
 .movilCart {
   flex: 0 0 180px; /* Kenglikni 180px da qat'iy qotirish */
   width: 180px; /* Cho'zilib ketishining oldini oladi */

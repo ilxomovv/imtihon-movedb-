@@ -1,0 +1,608 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  background-color: rgb(3 37 65);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 40px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  justify-content: center;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding-left: 37px;
+}
+
+.dropbtn {
+  background-color: transparent;
+  color: white;
+  font-size: 14.5px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  padding: 10px 0;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  min-width: 170px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 5px;
+  padding: 8px 0;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(5px);
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease;
+  transition-delay: 0.2s;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  font-size: 15px;
+}
+
+.dropdown-content a:hover {
+  background-color: #d1d1d1;
+}
+
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+.dropdown-content::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+}
+.plus {
+  color: white;
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
+}
+.langbtn {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 4px 5px;
+  border-radius: 5px;
+}
+.langbtn:hover {
+  color: rgb(3 37 65);
+  background-color: white;
+  transition: 0.3s;
+}
+.login {
+  background-color: transparent;
+  border-color: transparent;
+  color: white;
+  font-size: 16px;
+}
+.join {
+  background-color: transparent;
+  border-color: transparent;
+  color: white;
+  font-size: 16px;
+}
+.searchbtn {
+  background-color: transparent;
+  border-color: transparent;
+  color: white;
+  font-size: 16px;
+}
+.login-join-search {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.reg {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-left: 315px;
+  padding-right: 0px;
+}
+.pastroqi {
+  position: sticky;
+  top: 0px;
+  z-index: 9999;
+  width: 100%;
+  background-color: #ffffff;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 12px 25px;
+  width: 100%;
+  padding-left: 131px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.search-icon {
+  font-size: 1.1rem;
+  color: #757575;
+  margin-right: 15px;
+  user-select: none;
+}
+.search-field {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  color: #333333;
+  font-family: "Segoe UI", sans-serif;
+  background: transparent;
+}
+.search-field::placeholder {
+  color: #b0bec5;
+  font-style: italic;
+}
+.result-img {
+  display: block;
+  margin: 50px auto;
+  max-width: 80%;
+  max-height: 50vh;
+}
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+.main-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.filter-panel {
+    width: 260px;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.accordion-item {
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    background: #fff;
+    overflow: hidden;
+}
+
+.accordion-header {
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.badge {
+    background-color: rgba(0,0,0,0.06);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #999;
+    margin-left: auto;
+    margin-right: 12px;
+    border: 1px solid #e3e3e3;
+}
+
+.accordion-content {
+    padding: 16px 20px;
+    border-top: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.filter-section h4 {
+    font-size: 14px;
+    font-weight: 300;
+    color: #777;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.slider-current-val {
+    font-size: 13px;
+    font-weight: bold;
+    color: #01b4e4;
+    background: rgba(1, 180, 228, 0.1);
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+
+.info-icon {
+    color: #ccc;
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+.radio-label, .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.sub-checkboxes {
+    padding-left: 5px;
+    margin-top: 5px;
+}
+
+.date-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.date-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #aaa;
+}
+
+.date-field input {
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+    border-radius: 4px;
+    width: 140px;
+    color: #777;
+}
+
+.genres-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.genre-tag {
+    border: 1px solid #ccc;
+    padding: 4px 12px;
+    border-radius: 14px;
+    font-size: 12px;
+    cursor: pointer;
+    background: #fff;
+    color: #000;
+    transition: all 0.1s;
+}
+
+.genre-tag:hover, .genre-tag.active {
+    background: #01b4e4;
+    color: #fff;
+    border-color: #01b4e4;
+}
+
+.text-input-field, .select-dropdown {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    color: #333;
+    background: white;
+}
+
+/* Streaming Provayderlar stillari */
+.providers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.provider-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+    background-size: cover;
+    background-color: #eee;
+    cursor: pointer;
+    border: 1px solid #e3e3e3;
+}
+
+.logo-netflix { background-image: url('https://www.themoviedb.org/assets/2/v4/fingerprint/apps/netflix-41cd66d14747412854b423f00164c8d55fa4b437fa05a2e635f793b827e69be2.svg'); }
+.logo-prime { background-image: url('https://www.themoviedb.org/assets/2/v4/fingerprint/apps/amazon-prime-video-a25e1dfb25ee4f8287bc12be67ec80b439c2c62c2f42a5bc65158a436a53655b.svg'); }
+.logo-apple { background-image: url('https://www.themoviedb.org/assets/2/v4/fingerprint/apps/apple-tv-plus-66f80738d8102a320c29f27329593bf4f3460e405a761ec810ff8fc802f085cb.svg'); }
+.logo-disney { background-image: url('https://www.themoviedb.org/assets/2/v4/fingerprint/apps/disney-plus-2f66487e471f00a4df7ca4cae8156637b567bfa3731885ff30ba62eb68128564.svg'); }
+.logo-hulu { background-image: url('https://www.themoviedb.org/assets/2/v4/fingerprint/apps/hulu-b27137f81498b965ba0fa70b9ebcf488b39a48f72df9fe59efd559868be881eb.svg'); }
+.logo-hbo { background-image: url('https://www.themoviedb.org/assets/2/v4/fingerprint/apps/max-9cf0f47e3a968a35e4064d4bde2cb63478cbefde7e1ab307779d71c4fa47cfeb.svg'); }
+
+.tmdb-slider-container {
+    position: relative;
+    padding: 10px 0 25px 0;
+    width: 100%;
+}
+
+.slider-track-ticks {
+    position: absolute;
+    top: 14px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.slider-track-ticks span {
+    position: absolute;
+    width: 1px;
+    height: 4px;
+    background-color: #999;
+}
+
+.tmdb-range-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #ddd;
+    outline: none;
+    position: relative;
+    z-index: 2;
+    border-radius: 2px;
+}
+
+.tmdb-range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #01b4e4;
+    cursor: pointer;
+}
+
+.slider-axis-labels {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15px;
+}
+
+.slider-axis-labels span {
+    position: absolute;
+    font-size: 11px;
+    color: #999;
+    transform: translateX(-50%);
+}
+
+.slider-axis-labels span:first-child { transform: translateX(0); }
+.slider-axis-labels span:last-child { transform: translateX(-100%); }
+
+.search-submit-btn {
+    width: 100%;
+    background-color: #01b4e4;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.search-submit-btn:hover { background-color: #009bca; }
+
+.movies-grid {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 30px 20px;
+}
+
+.accordion-item .accordion-content { display: none; }
+.accordion-item.expanded .accordion-content { display: flex; }
+
+.card {
+    background: #fff;
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.card-img-wrapper { position: relative; height: 250px; }
+.card img { width: 100%; height: 100%; object-fit: cover; }
+
+.card-content { padding: 12px; }
+.card-title { font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card-date { font-size: 13px; color: #666; }
+
+.load-more-btn {
+    width: calc(100% - 290px);
+    margin-left: auto;
+    background-color: #01b4e4;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.loading-text { grid-column: 1 / -1; text-align: center; color: #999; padding: 40px 0; }
+
+/* Asosiy konteyner */
+.main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+/* Filtrlar va Kartochkalarni o'rab turuvchi wrapper */
+.content-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px; /* Panel va kinolar orasidagi masofa */
+    width: 100%;
+}
+
+/* Chap tomondagi filtrlar paneli */
+.filter-panel {
+    width: 260px;
+    min-width: 260px; /* Kengligi qisqarib ketmasligi uchun */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* O'NG TOMONDAKLI KINOLAR GRIDI (Muammo aynan shu yerda edi) */
+.movies-grid {
+    flex-grow: 1; /* Qolgan barcha bo'sh joyni egallaydi */
+    display: grid;
+    /* Har bir qatorda 5 tadan karta bo'ladi va ular bir xil kenglikda qisqarib-kengayadi */
+    grid-template-columns: repeat(5, minmax(0, 1fr)); 
+    gap: 30px 20px; /* Qatorlar va ustunlar orasidagi masofa */
+    width: 100%;
+}
+
+/* Ekran kichrayganda (Planshet va noutbuklar uchun responsive moslashuvchanlik) */
+@media (max-width: 1200px) {
+    .movies-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr)); /* 4 talik grid */
+    }
+}
+
+@media (max-width: 992px) {
+    .movies-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 talik grid */
+    }
+}
+
+/* Kartochkalar dizayni */
+.card {
+    background: #fff;
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Konteyner kengligini to'liq oladi */
+    height: 100%;
+}
+
+/* Rasm qismi */
+.card-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 330px; /* TMDB standartlariga yaqin balandlik */
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Rasm cho'zilib ketmasligi uchun */
+}
+
+/* Matn qismi */
+.card-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Matn sig'masa ... bo'lib qoladi */
+}
+
+.card-date {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+}
+
+/* Load More tugmasining joylashuvi */
+.load-more-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    /* Tugma o'ng tarafdagi kinolar tagida turishi uchun padding (filtr paneli kengligi + gap) */
+    padding-left: 290px; 
+    box-sizing: border-box;
+}
+
+.load-more-btn {
+    width: 100%; /* Padding hisobiga o'ng tomondagi grid bilan teng kenglikda ochiladi */
+    background-color: #01b4e4;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.load-more-btn:hover {
+    background-color: #009bca;
+}

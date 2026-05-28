@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <!doctype html>
@@ -75,7 +82,9 @@
             <div class="login-join-search">
               <button class="login">Login</button>
               <button class="join">Join TMDB</button>
-              <button class="searchbtn">🔍</button>
+              <button class="searchbtn">
+                <i class="fa-regular fa-heart"></i>
+              </button>
             </div>
           </section>
         </nav>
@@ -90,7 +99,7 @@
           </div>
         </nav>
         <div class="main-container">
-          <h2 class="page-title">Popular TV Shows</h2>
+          <h2 class="page-title">Popular Movies</h2>
 
           <div class="content-wrapper">
             <aside class="filter-panel">
@@ -113,23 +122,16 @@
                         Rating Descending
                       </option>
                       <option value="vote_average.asc">Rating Ascending</option>
-                      <option value="first_air_date.desc">
-                        First Air Date Descending
+                      <option value="release_date.desc">
+                        Release Date Desc
                       </option>
-                      <option value="first_air_date.asc">
-                        First Air Date Ascending
-                      </option>
+                      <option value="release_date.asc">Release Date Asc</option>
                     </select>
                   </div>
                 </div>
               </div>
 
               <div class="accordion-item">
-                <div class="accordion-header">
-                  <span>Where To Watch</span>
-                  <span class="badge">259</span>
-                  <i class="fas fa-chevron-right"></i>
-                </div>
                 <div class="accordion-content">
                   <div class="filter-section">
                     <h4>My Services</h4>
@@ -185,38 +187,13 @@
                       Everything</label
                     >
                     <label class="radio-label"
-                      ><input type="radio" name="show_me" value="not_seen" /> TV
-                      Shows I Haven't Seen</label
+                      ><input type="radio" name="show_me" value="not_seen" />
+                      Movies I Haven't Seen</label
                     >
                     <label class="radio-label"
-                      ><input type="radio" name="show_me" value="seen" /> TV
-                      Shows I Have Seen</label
+                      ><input type="radio" name="show_me" value="seen" /> Movies
+                      I Have Seen</label
                     >
-                  </div>
-
-                  <div class="filter-section">
-                    <h4>Availabilities</h4>
-                    <label class="checkbox-label"
-                      ><input type="checkbox" /> Search all
-                      availabilities?</label
-                    >
-                    <div class="sub-checkboxes">
-                      <label class="checkbox-label"
-                        ><input type="checkbox" checked /> Stream</label
-                      >
-                      <label class="checkbox-label"
-                        ><input type="checkbox" checked /> Free</label
-                      >
-                      <label class="checkbox-label"
-                        ><input type="checkbox" checked /> Ads</label
-                      >
-                      <label class="checkbox-label"
-                        ><input type="checkbox" checked /> Rent</label
-                      >
-                      <label class="checkbox-label"
-                        ><input type="checkbox" checked /> Buy</label
-                      >
-                    </div>
                   </div>
 
                   <div class="filter-section">
@@ -238,13 +215,12 @@
                   <div class="filter-section">
                     <h4>Genres</h4>
                     <div class="genres-grid">
-                      <span class="genre-tag" data-id="10759"
+                      <span class="genre-tag" data-id="28"
                         >Action & Adventure</span
                       >
                       <span class="genre-tag" data-id="16">Animation</span>
                       <span class="genre-tag" data-id="35">Comedy</span>
                       <span class="genre-tag" data-id="80">Crime</span>
-                      <span class="genre-tag" data-id="99">Documentary</span>
                       <span class="genre-tag" data-id="18">Drama</span>
                       <span class="genre-tag" data-id="10751">Family</span>
                       <span class="genre-tag" data-id="10762">Kids</span>
@@ -398,6 +374,75 @@
             <button class="load-more-btn" id="load-more-btn">Load More</button>
           </div>
         </div>
+        <!doctype html>
+        <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+            <title>Document</title>
+            <link rel="stylesheet" href="./style/style.css" />
+          </head>
+          <body>
+            <footer class="footer-section">
+              <div class="footer-container">
+                <div class="footer-brand-column">
+                  <div class="footer-logo">
+                    <span class="logo-top">THE</span>
+                    <span class="logo-middle">MOVIE</span>
+                    <span class="logo-bottom">DB</span>
+                  </div>
+                  <div class="user-welcome-box">
+                    Hi aaalll00110011100@gmail.com!
+                  </div>
+                </div>
+
+                <div class="footer-links-column">
+                  <h3>THE BASICS</h3>
+                  <ul>
+                    <li><a href="#">About TMDB</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">API Documentation</a></li>
+                    <li><a href="#">API for Business</a></li>
+                    <li><a href="#">System Status</a></li>
+                  </ul>
+                </div>
+
+                <div class="footer-links-column">
+                  <h3>GET INVOLVED</h3>
+                  <ul>
+                    <li><a href="#">Contribution Bible</a></li>
+                    <li><a href="#">Add New Movie</a></li>
+                    <li><a href="#">Add New TV Show</a></li>
+                  </ul>
+                </div>
+
+                <div class="footer-links-column">
+                  <h3>COMMUNITY</h3>
+                  <ul>
+                    <li><a href="#">Guidelines</a></li>
+                    <li><a href="#">Discussions</a></li>
+                    <li><a href="#">Leaderboard</a></li>
+                    <li><a href="#">Support Forums</a></li>
+                  </ul>
+                </div>
+
+                <div class="footer-links-column">
+                  <h3>LEGAL</h3>
+                  <ul>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">API Terms of Use</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">DMCA Policy</a></li>
+                  </ul>
+                </div>
+              </div>
+            </footer>
+          </body>
+        </html>
+
         <script src="script.js"></script>
       </body>
     </html>

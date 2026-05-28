@@ -268,7 +268,62 @@
   background-color: #032541;
   color: #1ed5a9;
 }
+.castSlider,
+#trailersContainer {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 12px;
+}
 
+.castSlider::-webkit-scrollbar,
+#trailersContainer::-webkit-scrollbar {
+  height: 8px;
+}
+
+.castSlider::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+#trailersContainer::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.castSlider::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+#trailersContainer::-webkit-scrollbar-thumb {
+  background: rgba(33, 212, 170, 0.4);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.castSlider::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+#trailersContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(33, 212, 170, 0.8);
+}
+
+.castSlider,
+#trailersContainer {
+  scrollbar-width: thin;
+}
+
+.castSlider {
+  scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.05);
+}
+
+#trailersContainer {
+  scrollbar-color: rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.05);
+}
 .otkazish {
   display: flex;
   align-items: center;

@@ -9,17 +9,17 @@
   </head>
   <body>
     <nav class="navbar">
-      <img
+      <a href="./index.html"><img
         class="tmdblogo"
         src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
         alt=""
         width="154px"
-      />
+      /></a>
       <section class="link">
         <div class="dropdown">
           <button class="dropbtn">Movies</button>
           <div class="dropdown-content">
-            <a href="#">Popular</a>
+            <a href="../others/Movies/popular/index.html">Popular</a>
             <a href="#">Now Playing</a>
             <a href="#">Upcoming</a>
             <a href="#">Top Rated</a>
@@ -28,7 +28,7 @@
         <div class="dropdown">
           <button class="dropbtn">TV Shows</button>
           <div class="dropdown-content">
-            <a href="#">Popular</a>
+            <a href="../others/TV Shows/popular/index.html">Popular</a>
             <a href="#">Airing Today</a>
             <a href="#">On TV</a>
             <a href="#">Top Rated</a>
@@ -107,233 +107,19 @@
       </div>
       <div id="trendingMovies" class="movies-container"></div>
     </section>
-    <div class="trailers-section">
-      <div class="trailers-header">
-        <h2>Latest Trailers</h2>
-        <div class="trailers-tabs">
-          <button class="tab-btn active">Popular</button>
-          <button class="tab-btn">In Theaters</button>
-        </div>
-      </div>
+    <div class="trailersSection" style="background-color: #0d253f; padding-left: 150px; padding-right: 150px; padding-top: 30px; padding-bottom: 30px; color: white; font-family: sans-serif;">
+  <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+    <h2 style="margin: 0; font-size: 24px; font-weight: bold;">Latest Trailers</h2>
+    <div style="display: flex; border: 1px solid #21d4aa; border-radius: 30px; overflow: hidden; background: #0d253f;">
+      <button id="btnTrailerPop" onclick="switchTrailerTab('popular')" style="background: #21d4aa; color: #0d253f; border: none; padding: 5px 20px; font-weight: bold; cursor: pointer; border-radius: 30px; transition: 0.3s;">Popular</button>
+      <button id="btnTrailerTheater" onclick="switchTrailerTab('theaters')" style="background: transparent; color: white; border: none; padding: 5px 20px; font-weight: bold; cursor: pointer; border-radius: 30px; transition: 0.3s;">In Theaters</button>
+    </div>
+  </div>
 
-      <div class="trailers-slider">
-        <!-- 1 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-        <!-- 2 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-        <!-- 3 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-        <!-- 4 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-        <!-- 5 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-        <!-- 6 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-        <!-- 7 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-        <!-- 8 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-        <!-- 9 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-        <!-- 10 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-        <!-- 11 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-        <!-- 12 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-        <!-- 13 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-        <!-- 14 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-        <!-- 15 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-        <!-- 16 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-        <!-- 17 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-        <!-- 18 -->
-        <div class="trailer-card">
-          <div class="video-container">
-            <img src="" alt="" />
-            <div class="play-btn">▶</div>
-            <div class="dots-btn">•••</div>
-          </div>
-          <div class="trailer-info">
-            <h3>Kino nomi</h3>
-            <p>Kino haqida qisqacha matn</p>
-          </div>
-        </div>
-      </div>
+  <div id="trailersContainer" style="display: flex; overflow-x: auto; gap: 20px; padding-bottom: 15px;">
+    </div>
+</div>
+
     </div>
     <div class="popular-section">
   <div class="popularSection">
@@ -362,7 +148,6 @@
   
 
       <div class="leaderboard-grid">
-        <!-- 1 -->
         <div class="leader-item">
           <img src="https://picsum.photos" alt="Avatar" class="avatar" />
           <div class="stats-box">
@@ -378,7 +163,6 @@
           </div>
         </div>
 
-        <!-- 2 -->
         <div class="leader-item">
           <img
             src="https://media.themoviedb.org/t/p/w128_and_h128_face/2n1UJMsI3UxUJ9DeumGM8IxYlGz.jpg"
@@ -398,7 +182,6 @@
           </div>
         </div>
 
-        <!-- 3 -->
         <div class="leader-item">
           <div class="avatar text-avatar" style="background-color: #d4af37">
             R
@@ -416,7 +199,6 @@
           </div>
         </div>
 
-        <!-- 4 -->
         <div class="leader-item">
           <img src="https://picsum.photos" alt="Avatar" class="avatar" />
           <div class="stats-box">
@@ -432,7 +214,7 @@
           </div>
         </div>
 
-        <!-- 5 -->
+
         <div class="leader-item">
           <img src="https://picsum.photos" alt="Avatar" class="avatar" />
           <div class="stats-box">
@@ -448,7 +230,6 @@
           </div>
         </div>
 
-        <!-- 6 -->
         <div class="leader-item">
           <img src="https://picsum.photos" alt="Avatar" class="avatar" />
           <div class="stats-box">
@@ -464,7 +245,6 @@
           </div>
         </div>
 
-        <!-- 7 -->
         <div class="leader-item">
           <div class="avatar text-avatar" style="background-color: #6c5ce7">
             M
@@ -482,7 +262,6 @@
           </div>
         </div>
 
-        <!-- 8 -->
         <div class="leader-item">
           <div class="avatar text-avatar" style="background-color: #00cec9">
             T
@@ -500,7 +279,6 @@
           </div>
         </div>
 
-        <!-- 9 -->
         <div class="leader-item">
           <img src="https://picsum.photos" alt="Avatar" class="avatar" />
           <div class="stats-box">
@@ -589,5 +367,6 @@
 
     <script src="./script.js"></script>
     <script src="popular.js"></script>
+    <script src="./trailers.js"></script>
   </body>
 </html>

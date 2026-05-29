@@ -45,19 +45,45 @@ const options = {
 
 function buildFilterURL(page) {
   let baseUrl = `https://api.themoviedb.org/3/discover/movie?language=en-US&page=${page}`;
+
+  const dateFromInput = document.getElementById("date-from");
+  const dateToInput = document.getElementById("date-to");
+
+  if (dateFromInput && dateFromInput.value) {
+    baseUrl += `&primary_release_date.gte=${dateFromInput.value}`;
+  } else {
+    const defaultFrom = new Date(Date.now() - 42 * 24 * 60 * 60 * 1000)
+      .toISOString()
+      .split("T")[0];
+    baseUrl += `&primary_release_date.gte=${defaultFrom}`;
+  }
+
+  if (dateToInput && dateToInput.value) {
+    baseUrl += `&primary_release_date.lte=${dateToInput.value}`;
+  } else {
+    const defaultTo = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+      .toISOString()
+      .split("T")[0];
+    baseUrl += `&primary_release_date.lte=${defaultTo}`;
+  }
+
+  baseUrl += `&with_release_type=2|3`;
+
   const sortSelect = document.getElementById("sort-by-select");
   baseUrl += `&sort_by=${sortSelect ? sortSelect.value : "popularity.desc"}`;
 
   const countrySelect = document.getElementById("country-select");
-  if (countrySelect && countrySelect.value)
+  if (countrySelect && countrySelect.value) {
     baseUrl += `&watch_region=${countrySelect.value}`;
+  }
 
   const activeGenres = [];
   document.querySelectorAll(".genre-tag.active").forEach((tag) => {
     activeGenres.push(tag.getAttribute("data-id"));
   });
-  if (activeGenres.length > 0)
+  if (activeGenres.length > 0) {
     baseUrl += `&with_genres=${activeGenres.join(",")}`;
+  }
 
   const score = document.getElementById("user-score-slider");
   const votes = document.getElementById("user-votes-slider");
@@ -68,8 +94,9 @@ function buildFilterURL(page) {
   if (runtime) baseUrl += `&with_runtime.lte=${runtime.value}`;
 
   const langSelect = document.getElementById("lang-select");
-  if (langSelect && langSelect.value)
+  if (langSelect && langSelect.value) {
     baseUrl += `&with_original_language=${langSelect.value}`;
+  }
 
   return baseUrl;
 }
@@ -96,9 +123,10 @@ function fetchMovies(page, isNewSearch = false) {
       }
 
       if (!data.results || data.results.length === 0) {
-        if (page === 1)
+        if (page === 1) {
           container.innerHTML =
-            '<div class="loading-text">Hech narsa topilmadi</div>';
+            '<div class="loading-text" style="color:black;">No items were found that match your query.</div>';
+        }
         if (loadMoreBtn) loadMoreBtn.style.display = "none";
         return;
       }
@@ -129,13 +157,14 @@ function fetchMovies(page, isNewSearch = false) {
       });
 
       container.insertAdjacentHTML("beforeend", moviesHtml);
-      if (loadMoreBtn)
+      if (loadMoreBtn) {
         loadMoreBtn.style.display = data.results.length < 20 ? "none" : "block";
+      }
     })
     .catch((err) => {
       console.error(err);
       container.innerHTML =
-        '<div class="loading-text" style="color:red;">Xatolik yuz berdi</div>';
+        '<div class="loading-text" style="color:black;">No items were found that match your query.</div>';
       if (loadMoreBtn) loadMoreBtn.style.display = "none";
     });
 }
@@ -155,5 +184,7 @@ if (loadMoreBtn) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  fetchMovies(currentPage, true);
+  container.innerHTML =
+    '<div class="loading-text" style="color:black;">No items were found that match your query.</div>';
+  if (loadMoreBtn) loadMoreBtn.style.display = "none";
 });

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TMDB Service Status</title>
+    <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+      <img
+        class="tmdblogo"
+        src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+        alt=""
+        width="154px"
+      />
+      <section class="link">
+        <div class="dropdown">
+          <button class="dropbtn">Movies</button>
+          <div class="dropdown-content">
+            <a href="#">Popular</a>
+            <a href="#">Now Playing</a>
+            <a href="#">Upcoming</a>
+            <a href="#">Top Rated</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">TV Shows</button>
+          <div class="dropdown-content">
+            <a href="#">Popular</a>
+            <a href="#">Airing Today</a>
+            <a href="#">On TV</a>
+            <a href="#">Top Rated</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">People</button>
+          <div class="dropdown-content">
+            <a href="#">Popular</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Awards</button>
+          <div class="dropdown-content">
+            <a href="#">Popular</a>
+            <a href="#">Upcoming</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">More</button>
+          <div class="dropdown-content">
+            <a href="#">Discussions</a>
+            <a href="#">Leaderboard</a>
+            <a href="#">Support</a>
+            <a href="#">API Documentation</a>
+            <a href="#">API for Business</a>
+          </div>
+        </div>
+      </section>
+      <section class="reg">
+        <a class="plus" href="#">+</a>
+        <div class="lang">
+          <button class="langbtn">EN</button>
+        </div>
+        <div class="login-join-search">
+          <button class="login">Login</button>
+          <button class="join">Join TMDB</button>
+          <button class="searchbtn">🔍</button>
+        </div>
+      </section>
+    </nav>
+    <nav class="pastroqi">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          class="search-field"
+          placeholder="Search for a movie, tv show, person..."
+        />
+      </div>
+    </nav>
+  <div class="container">
+
+    <!-- TOP -->
+
+    <div class="top-box">
+
+      <div class="logo">
+        THE<br>MOVIE<br>DB
+      </div>
+
+      <h1 class="title">
+        TMDB Service Status
+      </h1>
+
+      <p class="desc">
+        Stay on top of TMDB's service status. Feel free to subscribe to be automatically notified when there's a new incident.
+      </p>
+
+      <div class="gear">⚙</div>
+
+      <button class="subscribe-btn" id="subscribeBtn">
+        SUBSCRIBE
+      </button>
+
+    </div>
+
+
+    <div class="green-bar">
+      All components are Operational
+    </div>
+
+
+    <div class="section">
+
+      <h2>
+        Component Summary
+      </h2>
+
+      <div class="table">
+
+        <div class="thead">
+          Component Name
+        </div>
+
+        <div class="row">
+          <h3>tmdb-api</h3>
+          <p>Response Time: 89 ms</p>
+        </div>
+
+        <div class="row">
+          <h3>tmdb-image</h3>
+          <p>Response Time: 56 ms</p>
+        </div>
+
+        <div class="row">
+          <h3>tmdb-web</h3>
+          <p>Response Time: 138 ms</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="section">
+
+      <h2>
+        Component Status History
+      </h2>
+
+      <div class="history-box">
+
+        <div class="search">
+
+          🔍
+
+          <input type="text" placeholder="Search Components">
+
+        </div>
+
+        <div class="history-head">
+
+          <div>Component Name</div>
+          <div>Uptime</div>
+          <div>May 29</div>
+          <div>May 28</div>
+          <div>May 27</div>
+          <div>May 26</div>
+          <div>May 25</div>
+          <div>May 24</div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+<div class="status-legend">
+
+  <div class="legend-item">
+    <span class="dot operational"></span>
+    Operational
+  </div>
+
+  <div class="legend-item">
+    <span class="dot informational"></span>
+    Informational
+  </div>
+
+  <div class="legend-item">
+    <span class="dot maintenance"></span>
+    Under Maintenance
+  </div>
+
+  <div class="legend-item">
+    <span class="dot degraded"></span>
+    Degraded Performance
+  </div>
+
+  <div class="legend-item">
+    <span class="dot partial"></span>
+    Partial Outage
+  </div>
+
+  <div class="legend-item">
+    <span class="dot outage"></span>
+    Major Outage
+  </div>
+
+</div>
+
+
+<div class="section">
+
+  <h2>
+    Incident History
+  </h2>
+
+
+  <div class="incident-history-box">
+
+    <div class="history-date">
+      May 29, 2026
+    </div>
+
+    <div class="history-content">
+      No incidents have been reported.
+    </div>
+
+  </div>
+
+
+  <div class="incident-history-box">
+
+    <div class="history-date">
+      May 28, 2026
+    </div>
+
+    <div class="history-content">
+      No incidents have been reported.
+    </div>
+
+  </div>
+
+  <div class="incident-history-box">
+
+    <div class="history-date">
+      May 27, 2026
+    </div>
+
+    <div class="history-content">
+      No incidents have been reported.
+    </div>
+
+  </div>
+
+
+  <div class="incident-history-box">
+
+    <div class="history-date">
+      May 26, 2026
+    </div>
+
+    <div class="history-content">
+      No incidents have been reported.
+    </div>
+
+  </div>
+
+</div>
+  </div>
+
+  <!-- POPUP -->
+
+  <div class="popup" id="popup">
+
+    <div class="popup-tabs">
+
+      <button class="active">✉</button>
+      <button>💬</button>
+      <button>📅</button>
+      <button>📡</button>
+
+    </div>
+
+    <div class="popup-content">
+
+      <p>
+        Subscribe to receive updates on ongoing incidents or upcoming maintenances via email.
+      </p>
+
+      <div class="input-box">
+        <label>Subscriber Name <span>*</span></label>
+        <input type="text" placeholder="P.Boyle">
+      </div>
+
+      <div class="input-box">
+        <label>Email Address <span>*</span></label>
+        <input type="email" placeholder="p.boyle@zylker.com">
+      </div>
+
+      <div class="captcha">
+
+        <div class="captcha-box">
+          H6E6KL
+        </div>
+
+        <button class="refresh">
+          ↻
+        </button>
+
+      </div>
+
+      <div class="input-box">
+        <label>Enter CAPTCHA <span>*</span></label>
+        <input type="text">
+      </div>
+
+      <button class="submit-btn">
+        Subscribe to email notifications
+      </button>
+
+      <a href="#" class="manage">
+        Manage Existing Subscription
+      </a>
+
+    </div>
+
+  </div>
+ <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-brand-column">
+          <div class="footer-logo">
+            <span class="logo-top">THE</span>
+            <span class="logo-middle">MOVIE</span>
+            <span class="logo-bottom">DB</span>
+          </div>
+          <div class="user-welcome-box">Hi aaalll00110011100@gmail.com!</div>
+        </div>
+
+        <div class="footer-links-column">
+          <h3>THE BASICS</h3>
+          <ul>
+            <li><a href="#">About TMDB</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">API Documentation</a></li>
+            <li><a href="#">API for Business</a></li>
+            <li><a href="#">System Status</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-column">
+          <h3>GET INVOLVED</h3>
+          <ul>
+            <li><a href="#">Contribution Bible</a></li>
+            <li><a href="#">Add New Movie</a></li>
+            <li><a href="#">Add New TV Show</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-column">
+          <h3>COMMUNITY</h3>
+          <ul>
+            <li><a href="#">Guidelines</a></li>
+            <li><a href="#">Discussions</a></li>
+            <li><a href="#">Leaderboard</a></li>
+            <li><a href="#">Support Forums</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-column">
+          <h3>LEGAL</h3>
+          <ul>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">API Terms of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">DMCA Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  <script>
+
+    const subscribeBtn = document.getElementById("subscribeBtn");
+    const popup = document.getElementById("popup");
+
+    subscribeBtn.addEventListener("click", () => {
+
+      popup.classList.toggle("active");
+
+    });
+
+    window.addEventListener("click", (e) => {
+
+      if(
+        !popup.contains(e.target) &&
+        !subscribeBtn.contains(e.target)
+      ){
+
+        popup.classList.remove("active");
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>

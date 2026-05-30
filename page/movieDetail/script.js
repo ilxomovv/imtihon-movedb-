@@ -8,7 +8,7 @@ let type = urlObj.searchParams.get("type") || "movie";
 
 const MEDIAL_LINK = "https://media.themoviedb.org/t/p/w200";
 const MEDIAL_BG = "https://media.themoviedb.org/t/p/w500";
-const VIDEO_BG_LINK = "https://media.themoviedb.org/t/p/w780"; // Kattaroq rasm uchun
+const VIDEO_BG_LINK = "https://media.themoviedb.org/t/p/w780";
 
 const options = {
   method: "GET",
@@ -47,6 +47,10 @@ async function getCredits(mediaId) {
   }
 }
 
+function inson(id) {
+  window.location.href = `../others/people/personDetail/index.html?id=${id}&type=movie`;
+}
+
 async function getRecommendations(mediaId) {
   try {
     let res = await fetch(
@@ -61,7 +65,6 @@ async function getRecommendations(mediaId) {
   }
 }
 
-// YANGI: Videolarni (Treyler/Tizer) olish funksiyasi
 async function getVideos(mediaId) {
   try {
     let res = await fetch(
@@ -76,7 +79,6 @@ async function getVideos(mediaId) {
   }
 }
 
-// YANGI: Orqa fon rasmlari va posterlarni olish funksiyasi
 async function getImages(mediaId) {
   try {
     let res = await fetch(
@@ -95,7 +97,6 @@ async function getImages(mediaId) {
   let result = document.getElementById("result");
   if (!result) return;
 
-  // Barcha so'rovlarni parallel yuboramiz
   const [info, credits, recommendations, videosData, imagesData] =
     await Promise.all([
       getInfoDetailScreen(),
@@ -118,15 +119,16 @@ async function getImages(mediaId) {
       ? info.first_air_date.slice(0, 4)
       : "N/A";
 
-  // 1. Aktyorlar qismi
   let castHtml = "";
   if (credits && credits.cast && credits.cast.length > 0) {
     credits.cast.slice(0, 15).forEach((actor) => {
       let profilePath = actor.profile_path
         ? MEDIAL_LINK + actor.profile_path
         : "https://via.placeholder.com/150x225?text=No+Image";
+
+      // SHU YERGA ONCLICK VA CURSOR:POINTER QO'SHILDI
       castHtml += `
-        <div class="castCard">
+        <div class="castCard" onclick="inson(${actor.id})" style="cursor: pointer;">
           <img src="${profilePath}" alt="${actor.name}">
           <div class="castInfo">
             <h4>${actor.name}</h4>
@@ -139,12 +141,10 @@ async function getImages(mediaId) {
     castHtml = "<p>Aktyorlar haqida ma'lumot topilmadi.</p>";
   }
 
-  // 2. Media Bo'limi uchun ma'lumotlarni tayyorlash (Treyler va Orqa fon rasmi)
   let videoCount = videosData?.results?.length || 0;
   let backdropCount = imagesData?.backdrops?.length || 0;
   let posterCount = imagesData?.posters?.length || 0;
 
-  // Asosiy treyler yoki tizer videoni topamiz (YouTube kaliti)
   let mainVideo =
     videosData?.results?.find(
       (v) => v.type === "Trailer" || v.type === "Teaser",
@@ -153,12 +153,10 @@ async function getImages(mediaId) {
     ? `https://www.youtube.com/watch?v=${mainVideo.key}`
     : "#";
 
-  // Rasm foni (agar video bo'lsa videoning foni, bo'lmasa kinoning o'z foni)
   let mediaBackground = info.backdrop_path
     ? VIDEO_BG_LINK + info.backdrop_path
     : "https://via.placeholder.com/780x440?text=No+Media+Preview";
 
-  // 3. O'xshash kinolar (Recommendations) qismi
   let recHtml = "";
   if (
     recommendations &&
@@ -187,7 +185,6 @@ async function getImages(mediaId) {
     recHtml = "<p>O'xshash kontentlar topilmadi.</p>";
   }
 
-  // Umumiy HTML strukturasi
   result.innerHTML = `
     <div class="movieDetail">
       <img class="movieBg" src="${MEDIAL_BG + (info.backdrop_path || "")}" alt="">
@@ -244,7 +241,7 @@ async function getImages(mediaId) {
 
     <div class="castSection" style="margin-top: 30px; font-family: sans-serif;">
       <div style="display: flex; gap: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px; font-weight: bold; font-size: 16px;">
-        <span style="cursor: pointer; border-bottom: 3px solid black; padding-bottom: 10px;">Media</span>
+        <span style="cursor: pointer; border-bottom: 3px solid black; color: black; padding-bottom: 10px;">Media</span>
         <span style="color: gray; cursor: pointer;">Most Popular</span>
         <span style="color: gray; cursor: pointer;">Videos ${videoCount}</span>
         <span style="color: gray; cursor: pointer;">Backdrops ${backdropCount}</span>

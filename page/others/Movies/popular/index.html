@@ -3,427 +3,452 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <title>Popular Movies -- The Movie Database (TMDB)</title>
+    <link rel="stylesheet" href="./style/style.css" />
   </head>
   <body>
-    <!doctype html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Header</title>
-        <link rel="stylesheet" href="./style/style.css" />
-      </head>
-      <body>
-        <nav class="navbar">
-          <a href="../../../home page/index.html">
-            <img
-              class="tmdblogo"
-              src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
-              alt=""
-              width="154px"
-            />
-          </a>
-          <section class="link">
-            <div class="dropdown">
-              <button class="dropbtn">Movies</button>
-              <div class="dropdown-content">
-                <a href="./index.html">Popular</a>
-                <a href="../now playing/index.html">Now Playing</a>
-                <a href="../upcoming/index.html">Upcoming</a>
-                <a href="#">Top Rated</a>
-              </div>
-            </div>
-            <div class="dropdown">
-              <button class="dropbtn">TV Shows</button>
-              <div class="dropdown-content">
-                <a href="./index.html">Popular</a>
-                <a href="#">Airing Today</a>
-                <a href="#">On TV</a>
-                <a href="#">Top Rated</a>
-              </div>
-            </div>
-            <div class="dropdown">
-              <button class="dropbtn">People</button>
-              <div class="dropdown-content">
-                <a href="#">Popular</a>
-              </div>
-            </div>
-            <div class="dropdown">
-              <button class="dropbtn">Awards</button>
-              <div class="dropdown-content">
-                <a href="#">Popular</a>
-                <a href="#">Upcoming</a>
-              </div>
-            </div>
-            <div class="dropdown">
-              <button class="dropbtn">More</button>
-              <div class="dropdown-content">
-                <a href="#">Discussions</a>
-                <a href="#">Leaderboard</a>
-                <a href="#">Support</a>
-                <a href="#">API Documentation</a>
-                <a href="#">API for Business</a>
-              </div>
-            </div>
-          </section>
-          <section class="reg">
-            <a class="plus" href="#">+</a>
-            <div class="lang">
-              <button class="langbtn">EN</button>
-            </div>
-            <div class="login-join-search">
-              <button class="login">Login</button>
-              <button class="join">Join TMDB</button>
-              <button class="searchbtn">
-                <i class="fa-regular fa-heart"></i>
-              </button>
-            </div>
-          </section>
-        </nav>
-
-        <div class="main-container">
-          <h2 class="page-title">Popular Movies</h2>
-
-          <div class="content-wrapper">
-            <aside class="filter-panel">
-              <div class="accordion-item expanded">
-                <div class="accordion-header">
-                  <span>Sort</span>
-                  <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="accordion-content">
-                  <div class="filter-section">
-                    <h4>Sort Results By</h4>
-                    <select id="sort-by-select" class="select-dropdown">
-                      <option value="popularity.desc" selected>
-                        Popularity Descending
-                      </option>
-                      <option value="popularity.asc">
-                        Popularity Ascending
-                      </option>
-                      <option value="vote_average.desc">
-                        Rating Descending
-                      </option>
-                      <option value="vote_average.asc">Rating Ascending</option>
-                      <option value="release_date.desc">
-                        Release Date Desc
-                      </option>
-                      <option value="release_date.asc">Release Date Asc</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item">
-                <div class="accordion-content">
-                  <div class="filter-section">
-                    <h4>My Services</h4>
-                    <label class="checkbox-label">
-                      <input type="checkbox" id="restrict-services" /> Restrict
-                      searches to my subscribed services?
-                    </label>
-                  </div>
-                  <div class="filter-section">
-                    <h4>Country</h4>
-                    <select id="country-select" class="select-dropdown">
-                      <option value="US" selected>United States</option>
-                      <option value="UZ">Uzbekistan</option>
-                      <option value="GB">United Kingdom</option>
-                      <option value="RU">Russia</option>
-                    </select>
-                  </div>
-                  <div class="providers-grid">
-                    <div
-                      class="provider-icon logo-netflix"
-                      title="Netflix"
-                    ></div>
-                    <div
-                      class="provider-icon logo-prime"
-                      title="Prime Video"
-                    ></div>
-                    <div
-                      class="provider-icon logo-apple"
-                      title="Apple TV"
-                    ></div>
-                    <div
-                      class="provider-icon logo-disney"
-                      title="Disney+"
-                    ></div>
-                    <div class="provider-icon logo-hulu" title="Hulu"></div>
-                    <div class="provider-icon logo-hbo" title="Max"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item expanded">
-                <div class="accordion-header">
-                  <span>Filters</span>
-                  <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="accordion-content">
-                  <div class="filter-section">
-                    <h4>
-                      Show Me <i class="fas fa-info-circle info-icon"></i>
-                    </h4>
-                    <label class="radio-label"
-                      ><input type="radio" name="show_me" value="all" checked />
-                      Everything</label
-                    >
-                    <label class="radio-label"
-                      ><input type="radio" name="show_me" value="not_seen" />
-                      Movies I Haven't Seen</label
-                    >
-                    <label class="radio-label"
-                      ><input type="radio" name="show_me" value="seen" /> Movies
-                      I Have Seen</label
-                    >
-                  </div>
-
-                  <div class="filter-section">
-                    <h4>Release Dates</h4>
-                    <label class="checkbox-label"
-                      ><input type="checkbox" checked /> Search all
-                      releases?</label
-                    >
-                    <div class="date-inputs">
-                      <div class="date-field">
-                        <span>from</span><input type="date" id="date-from" />
-                      </div>
-                      <div class="date-field">
-                        <span>to</span><input type="date" id="date-to" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="filter-section">
-                    <h4>Genres</h4>
-                    <div class="genres-grid">
-                      <span class="genre-tag" data-id="28"
-                        >Action & Adventure</span
-                      >
-                      <span class="genre-tag" data-id="16">Animation</span>
-                      <span class="genre-tag" data-id="35">Comedy</span>
-                      <span class="genre-tag" data-id="80">Crime</span>
-                      <span class="genre-tag" data-id="18">Drama</span>
-                      <span class="genre-tag" data-id="10751">Family</span>
-                      <span class="genre-tag" data-id="10762">Kids</span>
-                      <span class="genre-tag" data-id="9648">Mystery</span>
-                      <span class="genre-tag" data-id="10763">News</span>
-                      <span class="genre-tag" data-id="10764">Reality</span>
-                      <span class="genre-tag" data-id="10765"
-                        >Sci-Fi & Fantasy</span
-                      >
-                      <span class="genre-tag" data-id="10766">Soap</span>
-                      <span class="genre-tag" data-id="10767">Talk</span>
-                      <span class="genre-tag" data-id="10768"
-                        >War & Politics</span
-                      >
-                      <span class="genre-tag" data-id="37">Western</span>
-                    </div>
-                  </div>
-
-                  <div class="filter-section">
-                    <h4>
-                      Language <i class="fas fa-info-circle info-icon"></i>
-                    </h4>
-                    <select id="lang-select" class="select-dropdown">
-                      <option value="">None Selected</option>
-                      <option value="en">English</option>
-                      <option value="uz">Uzbek</option>
-                      <option value="ru">Russian</option>
-                    </select>
-                  </div>
-
-                  <div class="filter-section">
-                    <h4>
-                      User Score
-                      <span id="user-score-val" class="slider-current-val"
-                        >10</span
-                      >
-                    </h4>
-                    <div class="tmdb-slider-container">
-                      <div class="slider-track-ticks">
-                        <span style="left: 0%"></span>
-                        <span style="left: 50%"></span>
-                        <span style="left: 100%"></span>
-                      </div>
-                      <input
-                        type="range"
-                        id="user-score-slider"
-                        class="tmdb-range-slider"
-                        min="0"
-                        max="10"
-                        value="10"
-                      />
-                      <div class="slider-axis-labels">
-                        <span style="left: 0%">0</span>
-                        <span style="left: 50%">5</span>
-                        <span style="left: 100%">10</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="filter-section">
-                    <h4>
-                      Minimum User Votes
-                      <span id="user-votes-val" class="slider-current-val"
-                        >0</span
-                      >
-                    </h4>
-                    <div class="tmdb-slider-container">
-                      <div class="slider-track-ticks">
-                        <span style="left: 0%"></span>
-                        <span style="left: 20%"></span>
-                        <span style="left: 40%"></span>
-                        <span style="left: 60%"></span>
-                        <span style="left: 80%"></span>
-                        <span style="left: 100%"></span>
-                      </div>
-                      <input
-                        type="range"
-                        id="user-votes-slider"
-                        class="tmdb-range-slider"
-                        min="0"
-                        max="500"
-                        value="0"
-                        step="50"
-                      />
-                      <div class="slider-axis-labels">
-                        <span style="left: 0%">0</span>
-                        <span style="left: 20%">100</span>
-                        <span style="left: 40%">200</span>
-                        <span style="left: 60%">300</span>
-                        <span style="left: 80%">400</span>
-                        <span style="left: 100%">500</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="filter-section">
-                    <h4>
-                      Runtime
-                      <span id="runtime-val" class="slider-current-val"
-                        >360</span
-                      >
-                    </h4>
-                    <div class="tmdb-slider-container">
-                      <div class="slider-track-ticks">
-                        <span style="left: 0%"></span>
-                        <span style="left: 33.33%"></span>
-                        <span style="left: 66.66%"></span>
-                        <span style="left: 100%"></span>
-                      </div>
-                      <input
-                        type="range"
-                        id="runtime-slider"
-                        class="tmdb-range-slider"
-                        min="0"
-                        max="360"
-                        value="360"
-                        step="15"
-                      />
-                      <div class="slider-axis-labels">
-                        <span style="left: 0%">0</span>
-                        <span style="left: 33.33%">120</span>
-                        <span style="left: 66.66%">240</span>
-                        <span style="left: 100%">360</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="filter-section">
-                    <h4>Keywords</h4>
-                    <input
-                      type="text"
-                      id="keywords-input"
-                      class="text-input-field"
-                      placeholder="Filter by keywords..."
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <button class="search-submit-btn" id="search-submit-btn">
-                Search
-              </button>
-            </aside>
-
-            <main class="movies-grid" id="movies-container">
-              <div class="loading-text">Loading...</div>
-            </main>
-          </div>
-
-          <div class="load-more-wrapper">
-            <button class="load-more-btn" id="load-more-btn">Load More</button>
+    <nav class="navbar">
+      <a href="../../../home page/index.html">
+        <img
+          class="tmdblogo"
+          src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+          alt=""
+          width="154px"
+        />
+      </a>
+      <section class="link">
+        <div class="dropdown">
+          <button class="dropbtn">Movies</button>
+          <div class="dropdown-content">
+            <a href="./index.html">Popular</a>
+            <a href="../now playing/index.html">Now Playing</a>
+            <a href="../upcoming/">Upcoming</a>
+            <a href="../top rated/index.html">Top Rated</a>
           </div>
         </div>
-        
-            <footer class="footer-section">
-              <div class="footer-container">
-                <div class="footer-brand-column">
-                  <div class="footer-logo">
-                    <span class="logo-top">THE</span>
-                    <span class="logo-middle">MOVIE</span>
-                    <span class="logo-bottom">DB</span>
+        <div class="dropdown">
+          <button class="dropbtn">TV Shows</button>
+          <div class="dropdown-content">
+            <a href="./index.html">Popular</a>
+            <a href="#">Airing Today</a>
+            <a href="#">On TV</a>
+            <a href="#">Top Rated</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">People</button>
+          <div class="dropdown-content">
+            <a href="../../people/popular/index.html">Popular</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Awards</button>
+          <div class="dropdown-content">
+            <a href="#">Popular</a>
+            <a href="#">Upcoming</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">More</button>
+          <div class="dropdown-content">
+            <a href="#">Discussions</a>
+            <a href="#">Leaderboard</a>
+            <a href="#">Support</a>
+            <a href="#">API Documentation</a>
+            <a href="#">API for Business</a>
+          </div>
+        </div>
+      </section>
+      <section class="reg">
+        <a class="plus" href="#">+</a>
+        <div class="lang">
+          <button class="langbtn">EN</button>
+        </div>
+        <div class="login-join-search">
+          <button class="login">Login</button>
+          <button class="join">Join TMDB</button>
+          <button class="searchbtn">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+        </div>
+      </section>
+    </nav>
+
+    <div class="main-container">
+      <h2 class="page-title">Popular Movies</h2>
+
+      <div class="content-wrapper">
+        <aside class="filter-panel">
+          <div class="accordion-item expanded">
+            <div class="accordion-header">
+              <span>Sort</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="accordion-content">
+              <div class="filter-section">
+                <h4>Sort Results By</h4>
+                <select id="sort-by-select" class="select-dropdown">
+                  <option value="popularity.desc" selected>
+                    Popularity Descending
+                  </option>
+                  <option value="popularity.asc">
+                    Popularity Ascending
+                  </option>
+                  <option value="vote_average.desc">
+                    Rating Descending
+                  </option>
+                  <option value="vote_average.asc">Rating Ascending</option>
+                  <option value="release_date.desc">
+                    Release Date Desc
+                  </option>
+                  <option value="release_date.asc">Release Date Asc</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-content">
+              <div class="filter-section">
+                <h4>My Services</h4>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="restrict-services" /> Restrict
+                  searches to my subscribed services?
+                </label>
+              </div>
+              <div class="filter-section">
+                <h4>Country</h4>
+                <select id="country-select" class="select-dropdown">
+                  <option value="US" selected>United States</option>
+                  <option value="UZ">Uzbekistan</option>
+                  <option value="GB">United Kingdom</option>
+                  <option value="RU">Russia</option>
+                </select>
+              </div>
+              <div class="providers-grid">
+                <div
+                  class="provider-icon logo-netflix"
+                  title="Netflix"
+                ></div>
+                <div
+                  class="provider-icon logo-prime"
+                  title="Prime Video"
+                ></div>
+                <div
+                  class="provider-icon logo-apple"
+                  title="Apple TV"
+                ></div>
+                <div
+                  class="provider-icon logo-disney"
+                  title="Disney+"
+                ></div>
+                <div class="provider-icon logo-hulu" title="Hulu"></div>
+                <div class="provider-icon logo-hbo" title="Max"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item expanded">
+            <div class="accordion-header">
+              <span>Filters</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="accordion-content">
+              <div class="filter-section">
+                <h4>
+                  Show Me <i class="fas fa-info-circle info-icon"></i>
+                </h4>
+                <label class="radio-label"
+                  ><input type="radio" name="show_me" value="all" checked />
+                  Everything</label
+                >
+                <label class="radio-label"
+                  ><input type="radio" name="show_me" value="not_seen" />
+                  Movies I Haven't Seen</label
+                >
+                <label class="radio-label"
+                  ><input type="radio" name="show_me" value="seen" /> Movies
+                  I Have Seen</label
+                >
+              </div>
+
+              <div class="filter-section">
+                <h4>Release Dates</h4>
+                <label class="checkbox-label"
+                  ><input type="checkbox" checked /> Search all
+                  releases?</label
+                >
+                <div class="date-inputs">
+                  <div class="date-field">
+                    <span>from</span><input type="date" id="date-from" />
                   </div>
-                  <div class="user-welcome-box">
-                    Hi aaalll00110011100@gmail.com!
+                  <div class="date-field">
+                    <span>to</span><input type="date" id="date-to" />
                   </div>
-                </div>
-
-                <div class="footer-links-column">
-                  <h3>THE BASICS</h3>
-                  <ul>
-                    <li><a href="#">About TMDB</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">API Documentation</a></li>
-                    <li><a href="#">API for Business</a></li>
-                    <li><a href="#">System Status</a></li>
-                  </ul>
-                </div>
-
-                <div class="footer-links-column">
-                  <h3>GET INVOLVED</h3>
-                  <ul>
-                    <li><a href="#">Contribution Bible</a></li>
-                    <li><a href="#">Add New Movie</a></li>
-                    <li><a href="#">Add New TV Show</a></li>
-                  </ul>
-                </div>
-
-                <div class="footer-links-column">
-                  <h3>COMMUNITY</h3>
-                  <ul>
-                    <li><a href="#">Guidelines</a></li>
-                    <li><a href="#">Discussions</a></li>
-                    <li><a href="#">Leaderboard</a></li>
-                    <li><a href="#">Support Forums</a></li>
-                  </ul>
-                </div>
-
-                <div class="footer-links-column">
-                  <h3>LEGAL</h3>
-                  <ul>
-                    <li><a href="#">Terms of Use</a></li>
-                    <li><a href="#">API Terms of Use</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">DMCA Policy</a></li>
-                  </ul>
                 </div>
               </div>
-            </footer>
-          </body>
-        </html>
+              <div class="filter-section">
+                <h4>Genres</h4>
+                <div class="genres-grid">
+                  <span class="genre-tag" data-id="28"
+                    >Action & Adventure</span
+                  >
+                  <span class="genre-tag" data-id="16">Animation</span>
+                  <span class="genre-tag" data-id="35">Comedy</span>
+                  <span class="genre-tag" data-id="80">Crime</span>
+                  <span class="genre-tag" data-id="18">Drama</span>
+                  <span class="genre-tag" data-id="10751">Family</span>
+                  <span class="genre-tag" data-id="10762">Kids</span>
+                  <span class="genre-tag" data-id="9648">Mystery</span>
+                  <span class="genre-tag" data-id="10763">News</span>
+                  <span class="genre-tag" data-id="10764">Reality</span>
+                  <span class="genre-tag" data-id="10765"
+                    >Sci-Fi & Fantasy</span
+                  >
+                  <span class="genre-tag" data-id="10766">Soap</span>
+                  <span class="genre-tag" data-id="10767">Talk</span>
+                  <span class="genre-tag" data-id="10768"
+                    >War & Politics</span
+                  >
+                  <span class="genre-tag" data-id="37">Western</span>
+                </div>
+              </div>
 
-        <script src="script.js"></script>
+              <div class="filter-section">
+                <h4>
+                  Language <i class="fas fa-info-circle info-icon"></i>
+                </h4>
+                <select id="lang-select" class="select-dropdown">
+                  <option value="">None Selected</option>
+                  <option value="en">English</option>
+                  <option value="uz">Uzbek</option>
+                  <option value="ru">Russian</option>
+                </select>
+              </div>
+
+              <div class="filter-section">
+                <h4>
+                  User Score
+                  <span id="user-score-val" class="slider-current-val"
+                    >10</span
+                  >
+                </h4>
+                <div class="tmdb-slider-container">
+                  <div class="slider-track-ticks">
+                    <span style="left: 0%"></span>
+                    <span style="left: 50%"></span>
+                    <span style="left: 100%"></span>
+                  </div>
+                  <input
+                    type="range"
+                    id="user-score-slider"
+                    class="tmdb-range-slider"
+                    min="0"
+                    max="10"
+                    value="10"
+                  />
+                  <div class="slider-axis-labels">
+                    <span style="left: 0%">0</span>
+                    <span style="left: 50%">5</span>
+                    <span style="left: 100%">10</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="filter-section">
+                <h4>
+                  Minimum User Votes
+                  <span id="user-votes-val" class="slider-current-val"
+                    >0</span
+                  >
+                </h4>
+                <div class="tmdb-slider-container">
+                  <div class="slider-track-ticks">
+                    <span style="left: 0%"></span>
+                    <span style="left: 20%"></span>
+                    <span style="left: 40%"></span>
+                    <span style="left: 60%"></span>
+                    <span style="left: 80%"></span>
+                    <span style="left: 100%"></span>
+                  </div>
+                  <input
+                    type="range"
+                    id="user-votes-slider"
+                    class="tmdb-range-slider"
+                    min="0"
+                    max="500"
+                    value="0"
+                    step="50"
+                  />
+                  <div class="slider-axis-labels">
+                    <span style="left: 0%">0</span>
+                    <span style="left: 20%">100</span>
+                    <span style="left: 40%">200</span>
+                    <span style="left: 60%">300</span>
+                    <span style="left: 80%">400</span>
+                    <span style="left: 100%">500</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="filter-section">
+                <h4>
+                  Runtime
+                  <span id="runtime-val" class="slider-current-val"
+                    >360</span
+                  >
+                </h4>
+                <div class="tmdb-slider-container">
+                  <div class="slider-track-ticks">
+                    <span style="left: 0%"></span>
+                    <span style="left: 33.33%"></span>
+                    <span style="left: 66.66%"></span>
+                    <span style="left: 100%"></span>
+                  </div>
+                  <input
+                    type="range"
+                    id="runtime-slider"
+                    class="tmdb-range-slider"
+                    min="0"
+                    max="360"
+                    value="360"
+                    step="15"
+                  />
+                  <div class="slider-axis-labels">
+                    <span style="left: 0%">0</span>
+                    <span style="left: 33.33%">120</span>
+                    <span style="left: 66.66%">240</span>
+                    <span style="left: 100%">360</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="filter-section">
+                <h4>Keywords</h4>
+                <input
+                  type="text"
+                  id="keywords-input"
+                  class="text-input-field"
+                  placeholder="Filter by keywords..."
+                />
+              </div>
+            </div>
+          </div>
+
+          <button class="search-submit-btn" id="search-submit-btn">
+            Search
+          </button>
+        </aside>
+
+        <main class="movies-grid" id="movies-container">
+          <div class="loading-text">Loading...</div>
+        </main>
+      </div>
+
+      <div class="load-more-wrapper">
+        <button class="load-more-btn" id="load-more-btn">Load More</button>
+      </div>
+    </div>
+    
+            <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-brand-column">
+          <img
+            src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg"
+            width="190px"
+            height="93px"
+            alt=""
+          />
+          <div class="user-welcome-box">Join the Community</div>
+        </div>
+
+        <div class="footer-links-column">
+          <h3>THE BASICS</h3>
+          <ul>
+            <li><a href="https://www.themoviedb.org/about">About TMDB</a></li>
+            <li>
+              <a href="https://www.themoviedb.org/about/get-in-touch/"
+                >Contact Us</a
+              >
+            </li>
+            <li>
+              <a href="https://developer.themoviedb.org/docs/getting-started"
+                >API Documentation</a
+              >
+            </li>
+            <li>
+              <a href="https://www.themoviedb.org/api-for-business"
+                >API for Business</a
+              >
+            </li>
+            <li>
+              <a href="https://status.themoviedb.org/#/">System Status</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-links-column">
+          <h3>GET INVOLVED</h3>
+          <ul>
+            <li>
+              <a href="https://www.themoviedb.org/bible">Contribution Bible</a>
+            </li>
+            <li>
+              <a href="https://www.themoviedb.org/movie/new">Add New Movie</a>
+            </li>
+            <li>
+              <a href="https://www.themoviedb.org/tv/new">Add New TV Show</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-links-column">
+          <h3>COMMUNITY</h3>
+          <ul>
+            <li>
+              <a
+                href="https://www.themoviedb.org/bible/general#674f287930fc85cab62597b4"
+                >Guidelines</a
+              >
+            </li>
+            <li>
+              <a href="https://www.themoviedb.org/discuss">Discussions</a>
+            </li>
+            <li>
+              <a href="https://www.themoviedb.org/leaderboard">Leaderboard</a>
+            </li>
+            <li>
+              <a href="https://www.themoviedb.org/talk">Support Forums</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-links-column">
+          <h3>LEGAL</h3>
+          <ul>
+            <li>
+              <a href="https://www.themoviedb.org/terms-of-use">Terms of Use</a>
+            </li>
+            <li>
+              <a href="https://www.themoviedb.org/api-terms-of-use"
+                >API Terms of Use</a
+              >
+            </li>
+            <li>
+              <a href="https://www.themoviedb.org/privacy-policy"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a href="https://www.themoviedb.org/dmca-policy">DMCA Policy</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
       </body>
     </html>
+
+    <script src="script.js"></script>
   </body>
 </html>

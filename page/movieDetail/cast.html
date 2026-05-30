@@ -74,10 +74,10 @@
     </div>
 
     <script>
-      // URL dan ID ni olamiz
-      let id = window.location.href.slice(
-        window.location.href.indexOf("=") + 1,
-      );
+      let id = window.location.href
+        .slice(window.location.href.indexOf("=") + 1)
+        .split("&")[0];
+
       const MEDIAL_LINK = "https://media.themoviedb.org/t/p/w200";
 
       const options = {
@@ -88,6 +88,10 @@
             "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NzllMWNhOTFjMzQyMWJiZTY2MGNjYmQ5ODZiYTYxMCIsIm5iZiI6MTc3OTY0ODk3OS41MTQsInN1YiI6IjZhMTM0OWQzNjAzNzI5MDcyOWRiNWMyYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tUFtBTtFOKeibppmy2k3CvYVpFTtsBGJ_AwZA9BCGqE",
         },
       };
+
+      function inson(personId) {
+        window.location.href = `../others/people/personDetail/index.html?id=${personId}&type=movie`;
+      }
 
       async function loadFullCredits() {
         try {
@@ -100,14 +104,13 @@
           document.getElementById("castCount").innerText = data.cast.length;
           document.getElementById("crewCount").innerText = data.crew.length;
 
-          // 1. BUTUN AKTYORLAR RO'YXATI
           let castHtml = "";
           data.cast.forEach((actor) => {
             let img = actor.profile_path
               ? MEDIAL_LINK + actor.profile_path
               : "https://via.placeholder.com/60x75?text=No+Image";
             castHtml += `
-            <div class="memberRow">
+            <div class="memberRow" onclick="inson(${actor.id})" style="cursor: pointer;">
               <img src="${img}" alt="${actor.name}">
               <div class="memberInfo">
                 <h4>${actor.name}</h4>
@@ -117,14 +120,13 @@
           });
           document.getElementById("fullCast").innerHTML = castHtml;
 
-          // 2. BUTUN JAMOA (CREW) RO'YXATI
           let crewHtml = "";
           data.crew.forEach((person) => {
             let img = person.profile_path
               ? MEDIAL_LINK + person.profile_path
               : "https://via.placeholder.com/60x75?text=No+Image";
             crewHtml += `
-            <div class="memberRow">
+            <div class="memberRow" onclick="inson(${person.id})" style="cursor: pointer;">
               <img src="${img}" alt="${person.name}">
               <div class="memberInfo">
                 <h4>${person.name}</h4>

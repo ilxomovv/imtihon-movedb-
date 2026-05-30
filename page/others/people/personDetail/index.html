@@ -4,9 +4,75 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <nav class="navbar">
+      <a href="../../../home page/index.html">
+        <img
+          class="tmdblogo"
+          src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+          alt=""
+          width="154px"
+        />
+      </a>
+      <section class="link">
+        <div class="dropdown">
+          <button class="dropbtn">Movies</button>
+          <div class="dropdown-content">
+            <a href="../../Movies/popular/index.html">Popular</a>
+            <a href="../../Movies/now playing/index.html">Now Playing</a>
+            <a href="../../Movies/upcoming/index.html">Upcoming</a>
+            <a href="../../Movies/top rated/index.html">Top Rated</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">TV Shows</button>
+          <div class="dropdown-content">
+            <a href="../../TV Shows/popular/index.html">Popular</a>
+            <a href="#">Airing Today</a>
+            <a href="#">On TV</a>
+            <a href="#">Top Rated</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">People</button>
+          <div class="dropdown-content">
+            <a href="../popular/index.html">Popular</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Awards</button>
+          <div class="dropdown-content">
+            <a href="#">Popular</a>
+            <a href="#">Upcoming</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">More</button>
+          <div class="dropdown-content">
+            <a href="#">Discussions</a>
+            <a href="#">Leaderboard</a>
+            <a href="#">Support</a>
+            <a href="#">API Documentation</a>
+            <a href="#">API for Business</a>
+          </div>
+        </div>
+      </section>
+      <section class="reg">
+        <a class="plus" href="#">+</a>
+        <div class="lang">
+          <button class="langbtn">EN</button>
+        </div>
+        <div class="login-join-search">
+          <button class="login">Login</button>
+          <button class="join">Join TMDB</button>
+          <button class="searchbtn">🔍</button>
+        </div>
+      </section>
+    </nav>
+
+    <div id="result"></div>
     <footer class="footer-section">
       <div class="footer-container">
         <div class="footer-brand-column">
@@ -103,5 +169,6 @@
         </div>
       </div>
     </footer>
+    <script src="script.js"></script>
   </body>
 </html>

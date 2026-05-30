@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TMDB About</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+      <img
+        class="tmdblogo"
+        src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+        alt=""
+        width="154px"
+      />
+      <section class="link">
+        <div class="dropdown">
+          <button class="dropbtn">Movies</button>
+          <div class="dropdown-content">
+            <a href="#">Popular</a>
+            <a href="#">Now Playing</a>
+            <a href="#">Upcoming</a>
+            <a href="#">Top Rated</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">TV Shows</button>
+          <div class="dropdown-content">
+            <a href="#">Popular</a>
+            <a href="#">Airing Today</a>
+            <a href="#">On TV</a>
+            <a href="#">Top Rated</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">People</button>
+          <div class="dropdown-content">
+            <a href="#">Popular</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Awards</button>
+          <div class="dropdown-content">
+            <a href="#">Popular</a>
+            <a href="#">Upcoming</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">More</button>
+          <div class="dropdown-content">
+            <a href="#">Discussions</a>
+            <a href="#">Leaderboard</a>
+            <a href="#">Support</a>
+            <a href="#">API Documentation</a>
+            <a href="#">API for Business</a>
+          </div>
+        </div>
+      </section>
+      <section class="reg">
+        <a class="plus" href="#">+</a>
+        <div class="lang">
+          <button class="langbtn">EN</button>
+        </div>
+        <div class="login-join-search">
+          <button class="login">Login</button>
+          <button class="join">Join TMDB</button>
+          <button class="searchbtn">🔍</button>
+        </div>
+      </section>
+    </nav>
+    <nav class="pastroqi">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          class="search-field"
+          placeholder="Search for a movie, tv show, person..."
+        />
+      </div>
+    </nav> 
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero">
+    <div class="hero-line hero-line1"></div>
+    <div class="hero-line hero-line2"></div>
+    <div class="hero-line hero-line3"></div>
+    <div class="hero-line hero-line4"></div>
+
+    <h1 class="big-title">Hi there,</h1>
+    <img src="./../../../Assets/img/png/hero.png" class="hero-img">
+
+    <div class="hero-content">
+      <h2>Let's talk about TMDB</h2>
+      <p>The Movie Database (TMDB) is a community built movie and TV database.</p>
+
+      <h3>The TMDB advantage</h3>
+      <div class="advantages">
+        <div class="item"><span>1</span><p>Every year since 2008, the number of contributions increases.</p></div>
+        <div class="item"><span>2</span><p>Extensive metadata for movies and TV shows.</p></div>
+        <div class="item"><span>3</span><p>TMDB is used in over 180 countries.</p></div>
+        <div class="item"><span>4</span><p>Our community is second to none.</p></div>
+        <div class="item"><span>5</span><p>Trusted by millions every day.</p></div>
+      </div>
+
+      <!-- CONTACT TUGMASI (Faqat bitta faol tugma qoldirildi va ID berildi) -->
+      <button id="contactBtn" class="btn-contact">Contact</button>
+    </div>
+  </section>
+
+  <!-- ========== SLIDER SECTION ========== -->
+  <section class="slider-section">
+    <button class="arrow" id="prev">❮</button>
+
+    <div class="slider-container">
+      <div class="logo-box">
+        <img id="logo" src="./../../../Assets/img/png/arrow-left.png">
+      </div>
+      <div class="slider-content">
+        <p class="desc" id="desc">The TMDB product, service, attitude and support are truly top notch.</p>
+        <div class="slider-line"></div>
+        <h4 id="author">Scott Olechowski, Chief Product Officer & Co-founder of Plex, Inc.</h4>
+      </div>
+    </div>
+
+    <button class="arrow" id="next">❯</button>
+  </section>
+
+  <div class="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+
+  <!-- ========== STATS SECTION ========== -->
+  <section class="stats-section">
+    <div class="stats-left">
+      <h1>Stats</h1>
+      <div class="stats-grid">
+        <div><h2>1,201,592</h2><p>Movies</p></div>
+        <div><h2>222,942</h2><p>TV Shows</p></div>
+        <div><h2>381,692</h2><p>TV Seasons</p></div>
+        <div><h2>6,256,030</h2><p>TV Episodes</p></div>
+      </div>
+    </div>
+    <div class="stats-right">
+      <img src="./../../../Assets/img/png/person.png">
+    </div>
+  </section>
+
+  <!-- ========== CONTACT MODAL OYNASI (Eng oxiriga to'g'ri joylashtirildi) ========== -->
+  <div id="contactModal" class="modal-overlay">
+    <div class="modal-content animate-fade">
+      
+      <div class="modal-header">
+        <h2>Contact Us</h2>
+        <button id="closeModalBtn" class="modal-close-x">&times;</button>
+      </div>
+
+      <form id="contactForm">
+        <div class="form-group-modal">
+          <label for="contactEmail">Contact Email</label>
+          <input type="email" id="contactEmail" required placeholder="your-email@example.com">
+        </div>
+
+        <div class="form-group-modal">
+          <label for="contactLocation">Where are you located?</label>
+          <select id="contactLocation">
+            <option value="Uzbekistan" selected>🇺🇿 Uzbekistan</option>
+            <option value="USA">🇺🇸 United States</option>
+            <option value="UK">🇬🇧 United Kingdom</option>
+            <option value="Other">🌍 Other</option>
+          </select>
+        </div>
+
+        <div class="form-group-modal">
+          <label for="contactSubject">Subject</label>
+          <input type="text" id="contactSubject" required placeholder="What is this about?">
+        </div>
+
+        <div class="form-group-modal">
+          <label for="contactContent">Email Content</label>
+          <textarea id="contactContent" rows="5" required placeholder="Write your message here..."></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="submit" class="btn-send">Send</button>
+        </div>
+      </form>
+
+    </div>
+      </div>
+   <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-brand-column">
+          <div class="footer-logo">
+            <span class="logo-top">THE</span>
+            <span class="logo-middle">MOVIE</span>
+            <span class="logo-bottom">DB</span>
+          </div>
+          <div class="user-welcome-box">Hi aaalll00110011100@gmail.com!</div>
+        </div>
+
+        <div class="footer-links-column">
+          <h3>THE BASICS</h3>
+          <ul>
+            <li><a href="#">About TMDB</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">API Documentation</a></li>
+            <li><a href="#">API for Business</a></li>
+            <li><a href="#">System Status</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-column">
+          <h3>GET INVOLVED</h3>
+          <ul>
+            <li><a href="#">Contribution Bible</a></li>
+            <li><a href="#">Add New Movie</a></li>
+            <li><a href="#">Add New TV Show</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-column">
+          <h3>COMMUNITY</h3>
+          <ul>
+            <li><a href="#">Guidelines</a></li>
+            <li><a href="#">Discussions</a></li>
+            <li><a href="#">Leaderboard</a></li>
+            <li><a href="#">Support Forums</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-column">
+          <h3>LEGAL</h3>
+          <ul>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">API Terms of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">DMCA Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  <!-- SCRIPTLAR ENG OXIRIDA YUKLANADI -->
+  <script src="script.js"></script>
+</body>
+</html>

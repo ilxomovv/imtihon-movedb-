@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login — Movie Database</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <img
+        class="tmdblogo"
+        src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+        alt=""
+        width="154px"
+      />
+      <section class="link">
+        <div class="dropdown">
+          <button class="dropbtn">Movies</button>
+          <div class="dropdown-content">
+            <a href="#">Popular</a>
+            <a href="#">Now Playing</a>
+            <a href="#">Upcoming</a>
+            <a href="#">Top Rated</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">TV Shows</button>
+          <div class="dropdown-content">
+            <a href="#">Popular</a>
+            <a href="#">Airing Today</a>
+            <a href="#">On TV</a>
+            <a href="#">Top Rated</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">People</button>
+          <div class="dropdown-content">
+            <a href="#">Popular</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Awards</button>
+          <div class="dropdown-content">
+            <a href="#">Popular</a>
+            <a href="#">Upcoming</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">More</button>
+          <div class="dropdown-content">
+            <a href="#">Discussions</a>
+            <a href="#">Leaderboard</a>
+            <a href="#">Support</a>
+            <a href="#">API Documentation</a>
+            <a href="#">API for Business</a>
+          </div>
+        </div>
+      </section>
+      <section class="reg">
+        <a class="plus" href="#">+</a>
+        <div class="lang">
+          <button class="langbtn">EN</button>
+        </div>
+        <div class="login-join-search">
+          <button class="login">Login</button>
+          <button class="join">Join TMDB</button>
+          <button class="searchbtn">🔍</button>
+        </div>
+      </section>
+    </nav>
+    <nav class="pastroqi">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          class="search-field"
+          placeholder="Search for a movie, tv show, person..."
+        />
+      </div>
+    </nav>
+  </header>
+  <main class="page-wrapper">
+
+    <div class="login-card">
+
+      <div class="login-left">
+        <h1 class="login-title">Login to Account</h1>
+        <p class="login-desc">
+          Log in to your account to use TMDB's editing and rating features and
+          get personalized recommendations.
+          Don't have an account?
+          <a href="https://themoviedb.org" target="_blank">Sign up here</a>.
+        </p>
+        <hr class="login-divider" />
+        <p class="resend-line">
+          Didn't receive verification email?
+          <a href="https://themoviedb.org" target="_blank">
+            Click here
+          </a>.
+        </p>
+
+        <form action="index.html" method="GET" id="loginForm">
+          
+          <div class="form-group" id="fg-username">
+            <label for="username">Username or Email</label>
+            <div class="input-wrap">
+              <svg class="input-icon" xmlns="http://w3.org" width="16" height="16"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              <input type="text" id="username" name="username"
+                     placeholder="username or email@mail.com"
+                     autocomplete="username" required/>
+            </div>
+            <span class="error-msg" id="err-username">Please enter your username.</span>
+          </div>
+
+          <div class="form-group" id="fg-password">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+              <svg class="input-icon" xmlns="http://w3.org" width="16" height="16"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              <input type="password" id="password" name="password"
+                     placeholder="••••••••"
+                     autocomplete="current-password" required/>
+              <button type="button" class="toggle-pw" id="togglePw" aria-label="Show password">
+                <svg id="eyeIcon" xmlns="http://w3.org" width="16" height="16"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+            <span class="error-msg" id="err-password">Please enter your password.</span>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-login" id="loginBtn">
+              <span class="spinner" id="spinner"></span>
+              <span class="btn-text">Login</span>
+            </button>
+            <a href="./reset.html"
+               target="_blank" class="link-reset">Reset Password</a>
+          </div>
+
+        </form>
+      </div>
+      <div class="login-right">
+        <div id="guestPanel" class="side-panel">
+          <div class="side-icon">🎦</div>
+          <h3>Welcome!</h3>
+          <p>Log in to your TMDB account and create your personal movie watchlists.</p>
+          <ul class="side-features">
+            <li>✓ Rate movies</li>
+            <li>✓ Favorites list</li>
+            <li>✓ Personal recommendations</li>
+            <li>✓ Leave reviews</li>
+          </ul>
+        </div>
+        <div id="userPanel" class="side-panel" style="display:none;">
+          <div class="user-avatar-wrap">
+            <div class="user-avatar-placeholder" id="userAvatarPlaceholder">?</div>
+            <img class="user-avatar-img" id="userAvatarImg" src="" alt="Avatar" style="display:none"/>
+          </div>
+          <div class="user-name"     id="userName">—</div>
+          <div class="user-username" id="userUsername">—</div>
+          <div class="user-id"       id="userId"></div>
+          <span class="user-badge">✓ TMDB Account connected</span>
+          <button class="btn-logout" id="logoutBtn">
+            <svg xmlns="http://w3.org" width="15" height="15"
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+            Log Out
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-brand-column">
+          <div class="footer-logo">
+            <span class="logo-top">THE</span>
+            <span class="logo-middle">MOVIE</span>
+            <span class="logo-bottom">DB</span>
+          </div>
+          <div class="user-welcome-box">Hi aaalll00110011100@gmail.com!</div>
+        </div>
+
+        <div class="footer-links-column">
+          <h3>THE BASICS</h3>
+          <ul>
+            <li><a href="#">About TMDB</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">API Documentation</a></li>
+            <li><a href="#">API for Business</a></li>
+            <li><a href="#">System Status</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-column">
+          <h3>GET INVOLVED</h3>
+          <ul>
+            <li><a href="#">Contribution Bible</a></li>
+            <li><a href="#">Add New Movie</a></li>
+            <li><a href="#">Add New TV Show</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-column">
+          <h3>COMMUNITY</h3>
+          <ul>
+            <li><a href="#">Guidelines</a></li>
+            <li><a href="#">Discussions</a></li>
+            <li><a href="#">Leaderboard</a></li>
+            <li><a href="#">Support Forums</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-column">
+          <h3>LEGAL</h3>
+          <ul>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">API Terms of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">DMCA Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  <script src="script.js"></script>
+</body>
+</html>

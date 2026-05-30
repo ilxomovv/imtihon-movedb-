@@ -11,7 +11,6 @@ body{
   background:#f4f4f4;
   overflow-x:hidden;
 }
-/* ===== GLOBAL ===== */
 *{
   margin:0;
   padding:0;
@@ -103,7 +102,6 @@ body{
   background:#d1d1d1;
 }
 
-/* ===== BUTTONS ===== */
 .plus{
   color:#fff;
   text-decoration:none;

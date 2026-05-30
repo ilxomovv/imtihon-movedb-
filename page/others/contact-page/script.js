@@ -28,7 +28,6 @@ window.addEventListener("click", (e) => {
     contactModal.style.display = "none";
   }
 });
-// Sidebar navigation
 const sidebarMenu = document.getElementById("sidebarMenu");
 if (sidebarMenu) {
   sidebarMenu.querySelectorAll("li[data-url]").forEach((li) => {
@@ -54,14 +53,12 @@ window.addEventListener("click", (e) => {
     contactModal.style.display = "none";
   }
 });
-// omdb link
 const omdbLink = document.getElementById("omdbLink");
 if (omdbLink) {
   omdbLink.addEventListener("click", () => {
     window.open("https://www.omdb.org/en/de", "_blank");
   });
 }
-// gravatarLink
 const gravatarLink = document.getElementById("gravatarLink");
 if (gravatarLink) {
   gravatarLink.addEventListener("click", () => {

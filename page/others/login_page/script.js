@@ -5,7 +5,7 @@ const HEADERS = {
   'Authorization': 'Bearer ' + BEARER
 };
 
-const loginForm  = document.getElementById('loginForm'); // Form elementi ulandi
+const loginForm  = document.getElementById('loginForm'); 
 const userInput  = document.getElementById('username');
 const pwInput    = document.getElementById('password');
 const fgUser     = document.getElementById('fg-username');
@@ -99,7 +99,7 @@ function showUserPanel(user) {
     const img = document.getElementById('userAvatarImg');
     img.src                  = 'https://image.tmdb.org/t/p/w185' + user.avatar.tmdb.avatar_path;
     img.style.display        = 'block';
-    document.getElementById('userAvatarPlaceholder').style.display = 'none'; // Bu yerdagi takroriy .style xatoligi tuzatildi
+    document.getElementById('userAvatarPlaceholder').style.display = 'none'; 
   }
 }
 

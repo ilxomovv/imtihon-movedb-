@@ -1,33 +1,26 @@
-// =========================================================
-// CONTACT MODAL LOGIC (XAVFSIZ VA TO'G'RILANGAN VARIANT)
-// =========================================================
 const contactBtn = document.getElementById('contactBtn');
 const contactModal = document.getElementById('contactModal');
 const closeModalBtn = document.getElementById('closeModalBtn');
 const contactForm = document.getElementById('contactForm');
 
-// Tugma bosilganda yangi contact modalni ochish
 if (contactBtn && contactModal) {
   contactBtn.addEventListener('click', () => {
     contactModal.style.display = 'flex';
   });
 }
 
-// "X" tugmasi bosilganda yopish
 if (closeModalBtn && contactModal) {
   closeModalBtn.addEventListener('click', () => {
     contactModal.style.display = 'none';
   });
 }
 
-// Modal tashqarisiga (orqa fonga) bosilganda yopish
 window.addEventListener('click', (e) => {
   if (e.target === contactModal) {
     contactModal.style.display = 'none';
   }
 });
 
-// Modal formasi yuborilganda tozalash va yopish
 if (contactForm && contactModal) {
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -37,7 +30,6 @@ if (contactForm && contactModal) {
   });
 }
 
-// Eski modal kodlari uchun xavfsiz tekshiruv (xato bermasligi uchun)
 const openModal = document.getElementById("openModal");
 const modal = document.getElementById("modal");
 const closeBtn = document.getElementById("closeBtn");
@@ -58,11 +50,6 @@ window.addEventListener("click", (e) => {
   }
 });
 
-
-// =========================================================
-// SLIDER (RASM YO'LLARI VA MANTIQ TO'G'RILANDI)
-// =========================================================
-// Windows operatsion tizimidagi backslash (\) brauzerda o'qilishi uchun slashelarga (/) almashtirildi
 const slides = [
   {
     image: "./../../../Assets/img/png/arrow-left.png",
@@ -70,12 +57,12 @@ const slides = [
     author: "Scott Olechowski, Chief Product Officer & Co-founder of Plex, Inc."
   },
   {
-    image: "./../../../Assets/img/png/logo.png", // Mavjud hero rasmiga moslashtirildi
+    image: "./../../../Assets/img/png/logo.png", 
     text: "TMDB has one of the best communities on the internet today.",
     author: "John Carter, Lead Developer"
   },
   {
-    image: "./../../../Assets/img/png/logo2.png", // Mavjud person rasmiga moslashtirildi
+    image: "./../../../Assets/img/png/logo2.png", 
     text: "Their API and design system are incredibly powerful.",
     author: "Emily Watson, Product Designer"
   },
@@ -111,7 +98,6 @@ function showSlide(index) {
   }
 }
 
-// Keyingi slayd
 if (next) {
   next.addEventListener("click", () => {
     current++;
@@ -122,7 +108,6 @@ if (next) {
   });
 }
 
-// Oldingi slayd
 if (prev) {
   prev.addEventListener("click", () => {
     current--;
@@ -133,7 +118,6 @@ if (prev) {
   });
 }
 
-// Nuqtalar (Dots) bosilganda
 dots.forEach((dot, index) => {
   dot.addEventListener("click", () => {
     current = index;
@@ -142,9 +126,6 @@ dots.forEach((dot, index) => {
 });
 
 
-// =========================================================
-// LOGIN PAGE REFERENCES (FAQAT ELEMENTLAR BO'LSA ISHLAYDI)
-// =========================================================
 const loginForm  = document.getElementById('loginForm');
 const userInput  = document.getElementById('username');
 const pwInput    = document.getElementById('password');
@@ -153,7 +134,6 @@ const fgPass     = document.getElementById('fg-password');
 const togglePw   = document.getElementById('togglePw');
 const eyeIcon    = document.getElementById('eyeIcon');
 
-// Login parolini ko'rsatish/yashirish qismi (About sahifasida endi xato bermaydi)
 if (togglePw && pwInput && eyeIcon) {
   const eyeOpen = `
     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>

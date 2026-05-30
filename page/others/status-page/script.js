@@ -1,33 +1,22 @@
 const subscribeBtn = document.getElementById("subscribeBtn");
 const popup = document.getElementById("popup");
-
 const tabs = document.querySelectorAll(".popup-tabs button");
-
 const popupContent = document.querySelector(".popup-content");
 
-// OPEN / CLOSE
-
 subscribeBtn.addEventListener("click", () => {
-
   popup.classList.toggle("active");
-
 });
 
 window.addEventListener("click", (e) => {
-
   if(
     !popup.contains(e.target) &&
     !subscribeBtn.contains(e.target)
   ){
-
     popup.classList.remove("active");
-
   }
-
 });
 
 const contents = [
-
   `
     <p>
       Subscribe to receive updates on ongoing incidents or upcoming maintenances via email.
@@ -134,42 +123,24 @@ const contents = [
 
 ];
 tabs.forEach((tab, index) => {
-
   tab.addEventListener("click", () => {
-
-
     tabs.forEach(btn => {
-
       btn.classList.remove("active");
-
     });
-
-
     tab.classList.add("active");
-
-
     popupContent.innerHTML = contents[index];
-
   });
-
 });
 
 document.addEventListener("click", (e) => {
-
   if(e.target.classList.contains("submit-btn")){
-
     if(e.target.innerText.includes("Copy RSS")){
-
       navigator.clipboard.writeText(
         "https://status.themoviedb.org/rss"
       );
-
       e.target.innerText = "Copied ✓";
-
     }
-
   }
-
 });
 
 

@@ -9,7 +9,7 @@ const options = {
 };
 
 function setId(id) {
-  window.location.href = `/page/movieDetail/index.html?id=${id}&type=movie`;
+  window.location.href = `../movieDetail/index.html?id=${id}&type=movie`;
 }
 
 function toggleFavorite(e, id, type, title, poster) {

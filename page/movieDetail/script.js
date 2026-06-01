@@ -126,7 +126,6 @@ async function getImages(mediaId) {
         ? MEDIAL_LINK + actor.profile_path
         : "https://via.placeholder.com/150x225?text=No+Image";
 
-      // SHU YERGA ONCLICK VA CURSOR:POINTER QO'SHILDI
       castHtml += `
         <div class="castCard" onclick="inson(${actor.id})" style="cursor: pointer;">
           <img src="${profilePath}" alt="${actor.name}">
@@ -172,7 +171,7 @@ async function getImages(mediaId) {
       let title = item.title || item.name;
       let itemPercent = Math.round((item.vote_average || 0) * 10);
       recHtml += `
-        <div class="castCard" onclick="window.location.href='/page/movieDetail/index.html?id=${item.id}&type=${type}'" style="cursor:pointer; min-width: 250px;">
+        <div class="castCard" onclick="window.location.href='../movieDetail/index.html?id=${item.id}&type=${type}'" style="cursor:pointer; min-width: 250px;">
           <img src="${imgPath}" alt="${title}" style="width:100%; height:140px; object-fit:cover; border-radius:8px;">
           <div class="castInfo" style="padding: 8px 5px; display: flex; justify-content: space-between; align-items: center;">
             <h4 style="margin:0; font-size:14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 75%;">${title}</h4>
@@ -236,7 +235,7 @@ async function getImages(mediaId) {
       <div class="castSlider">
         ${castHtml}
       </div>
-      <a href="/page/movieDetail/cast.html?id=${id}&type=${type}" class="fullCastBtn">Full Cast & Crew</a>
+      <a href="./cast.html?id=${id}&type=${type}" class="fullCastBtn">Full Cast & Crew</a>
     </div>
 
     <div class="castSection" style="margin-top: 30px; font-family: sans-serif;">

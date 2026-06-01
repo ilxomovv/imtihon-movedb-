@@ -9,7 +9,7 @@ const popularOptions = {
 };
 
 function setTvId(id) {
-  window.location.href = `/page/movieDetail/index.html?id=${id}&type=tv`;
+  window.location.href = `../movieDetail/index.html?id=${id}&type=tv`;
 }
 
 async function getPopularTV() {

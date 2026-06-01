@@ -1,112 +1,260 @@
+const API_KEY_BEARER =
+  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NzllMWNhOTFjMzQyMWJiZTY2MGNjYmQ5ODZiYTYxMCIsIm5iZiI6MTc3OTY0ODk3OS41MTQsInN1YiI6IjZhMTM0OWQzNjAzNzI5MDcyOWRiNWMyYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tUFtBTtFOKeibppmy2k3CvYVpFTtsBGJ_AwZA9BCGqE";
+const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
+
 let currentPage = 1;
-const container = document.getElementById('movies-container');
-const loadMoreBtn = document.getElementById('load-more-btn');
-const searchSubmitBtn = document.getElementById('search-submit-btn');
+let allFetchedShows = [];
+let isSearching = false;
 
-document.querySelectorAll('.accordion-header').forEach(header => {
-    header.addEventListener('click', () => {
-        const item = header.parentElement;
-        item.classList.toggle('expanded');
-        const icon = header.querySelector('i');
-        if (icon) {
-            icon.className = item.classList.contains('expanded') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("movies-container");
+  const loadMoreBtn = document.getElementById("load-more-btn");
+
+  const userScoreSlider = document.getElementById("user-score-slider");
+  const userScoreVal = document.getElementById("user-score-val");
+  const userVotesSlider = document.getElementById("user-votes-slider");
+  const userVotesVal = document.getElementById("user-votes-val");
+  const runtimeSlider = document.getElementById("runtime-slider");
+  const runtimeVal = document.getElementById("runtime-val");
+  const searchBtn = document.getElementById("search-submit-btn");
+
+  const navbarSearchField = document.querySelector(".search-field");
+  const keywordsInput = document.getElementById("keywords-input");
+
+  async function fetchTVShows(page = 1, searchQuery = "") {
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: API_KEY_BEARER,
+      },
+    };
+
+    try {
+      if (page === 1) {
+        container.innerHTML = `<div class="loading-text">Loading shows...</div>`;
+        allFetchedShows = [];
+      }
+
+      let url = `https://api.themoviedb.org/3/tv/popular?language=en-US&page=${page}`;
+
+      if (searchQuery !== "") {
+        url = `https://api.themoviedb.org/3/search/tv?query=${encodeURIComponent(searchQuery)}&language=en-US&page=${page}`;
+      }
+
+      const response = await fetch(url, options);
+      const data = await response.json();
+
+      if (data.results && data.results.length > 0) {
+        allFetchedShows = [...allFetchedShows, ...data.results];
+        applyFilters();
+      } else {
+        if (page === 1) {
+          container.innerHTML = `<div class="loading-text">No TV Shows found.</div>`;
         }
+      }
+    } catch (error) {
+      console.error(error);
+      container.innerHTML = `<div class="loading-text" style="color: red;">Failed to load data from TMDB.</div>`;
+    }
+  }
+
+  function applyFilters() {
+    let filteredResults = [...allFetchedShows];
+
+    const activeGenres = Array.from(
+      document.querySelectorAll(".genre-tag.active"),
+    ).map((t) => parseInt(t.dataset.id));
+    if (activeGenres.length > 0) {
+      filteredResults = filteredResults.filter(
+        (show) =>
+          show.genre_ids &&
+          show.genre_ids.some((genreId) => activeGenres.includes(genreId)),
+      );
+    }
+
+    const maxScore = parseFloat(userScoreSlider.value);
+    filteredResults = filteredResults.filter(
+      (show) => (show.vote_average || 0) <= maxScore,
+    );
+
+    const minVotes = parseInt(userVotesSlider.value);
+    if (minVotes > 0) {
+      filteredResults = filteredResults.filter(
+        (show) => (show.vote_count || 0) >= minVotes,
+      );
+    }
+
+    const maxRuntime = parseInt(runtimeSlider.value);
+    if (maxRuntime < 360) {
+      filteredResults = filteredResults.filter((show) => {
+        if (!show.episode_run_time || show.episode_run_time.length === 0)
+          return true;
+        return show.episode_run_time[0] <= maxRuntime;
+      });
+    }
+
+    const selectedLang = document.getElementById("lang-select").value;
+    if (selectedLang) {
+      filteredResults = filteredResults.filter(
+        (show) => show.original_language === selectedLang,
+      );
+    }
+
+    const dateFrom = document.getElementById("date-from").value;
+    const dateTo = document.getElementById("date-to").value;
+    if (dateFrom) {
+      filteredResults = filteredResults.filter(
+        (show) =>
+          show.first_air_date &&
+          new Date(show.first_air_date) >= new Date(dateFrom),
+      );
+    }
+    if (dateTo) {
+      filteredResults = filteredResults.filter(
+        (show) =>
+          show.first_air_date &&
+          new Date(show.first_air_date) <= new Date(dateTo),
+      );
+    }
+
+    const sortBy = document.getElementById("sort-by-select").value;
+    if (sortBy === "popularity.desc") {
+      filteredResults.sort((a, b) => b.popularity - a.popularity);
+    } else if (sortBy === "popularity.asc") {
+      filteredResults.sort((a, b) => a.popularity - b.popularity);
+    } else if (sortBy === "vote_average.desc") {
+      filteredResults.sort((a, b) => b.vote_average - a.vote_average);
+    } else if (sortBy === "vote_average.asc") {
+      filteredResults.sort((a, b) => a.vote_average - b.vote_average);
+    } else if (sortBy === "first_air_date.desc") {
+      filteredResults.sort(
+        (a, b) => new Date(b.first_air_date) - new Date(a.first_air_date),
+      );
+    } else if (sortBy === "first_air_date.asc") {
+      filteredResults.sort(
+        (a, b) => new Date(a.first_air_date) - new Date(b.first_air_date),
+      );
+    }
+
+    displayShows(filteredResults);
+  }
+
+  function displayShows(shows) {
+    container.innerHTML = "";
+
+    if (shows.length === 0) {
+      container.innerHTML = `<div class="loading-text">No TV Shows match your filter criteria.</div>`;
+      return;
+    }
+
+    shows.forEach((show) => {
+      const card = document.createElement("a");
+
+      let currentPath = window.location.pathname;
+      let basePath = currentPath.substring(0, currentPath.lastIndexOf("/") + 1);
+      card.href = `${basePath}../../../movieDetail/index.html?id=${show.id}&type=tv`;
+
+      card.className = "card";
+      card.style.textDecoration = "none";
+
+      const posterUrl = show.poster_path
+        ? `${IMAGE_BASE_URL}${show.poster_path}`
+        : "https://via.placeholder.com/500x750?text=No+Poster";
+
+      const releaseDate = show.first_air_date
+        ? new Date(show.first_air_date).toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          })
+        : "Unknown Date";
+
+      card.innerHTML = `
+                <div class="card-img-wrapper">
+                    <img src="${posterUrl}" alt="${show.name}" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title" title="${show.name}">${show.name}</h3>
+                    <p class="card-date">${releaseDate}</p>
+                </div>
+            `;
+      container.appendChild(card);
     });
-});
+  }
 
-document.querySelectorAll('.genre-tag').forEach(tag => {
-    tag.addEventListener('click', () => tag.classList.toggle('active'));
-});
+  userScoreSlider.addEventListener(
+    "input",
+    (e) => (userScoreVal.textContent = e.target.value),
+  );
+  userVotesSlider.addEventListener(
+    "input",
+    (e) => (userVotesVal.textContent = e.target.value),
+  );
+  runtimeSlider.addEventListener(
+    "input",
+    (e) => (runtimeVal.textContent = e.target.value),
+  );
 
-const setupSlider = (sliderId, valId) => {
-    const slider = document.getElementById(sliderId);
-    const val = document.getElementById(valId);
-    if(slider && val) slider.addEventListener('input', (e) => { val.textContent = e.target.value; });
-};
-setupSlider('user-score-slider', 'user-score-val');
-setupSlider('user-votes-slider', 'user-votes-val');
-setupSlider('runtime-slider', 'runtime-val');
+  const genreTags = document.querySelectorAll(".genre-tag");
+  genreTags.forEach((tag) => {
+    tag.addEventListener("click", () => {
+      tag.classList.toggle("active");
+    });
+  });
 
-const options = {
-    method: 'GET',
-    headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NzllMWNhOTFjMzQyMWJiZTY2MGNjYmQ5ODZiYTYxMCIsIm5iZiI6MTc3OTY0ODk3OS41MTQsInN1YiI6IjZhMTM0OWQzNjAzNzI5MDcyOWRiNWMyYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tUFtBTtFOKeibppmy2k3CvYVpFTtsBGJ_AwZA9BCGqE'
+  const accordionHeaders = document.querySelectorAll(".accordion-header");
+  accordionHeaders.forEach((header) => {
+    header.addEventListener("click", () => {
+      const parent = header.parentElement;
+      const icon = header.querySelector("i");
+      parent.classList.toggle("expanded");
+
+      if (parent.classList.contains("expanded")) {
+        icon.className = "fas fa-chevron-down";
+      } else {
+        icon.className = "fas fa-chevron-right";
+      }
+    });
+  });
+
+  searchBtn.addEventListener("click", () => {
+    let searchInput = navbarSearchField.value.trim();
+    if (searchInput === "") {
+      searchInput = keywordsInput.value.trim();
     }
-};
 
-function buildFilterURL(page) {
-    let baseUrl = `https://api.themoviedb.org/3/discover/tv?language=en-US&page=${page}`;
+    currentPage = 1;
 
-    const sortSelect = document.getElementById('sort-by-select');
-    baseUrl += `&sort_by=${sortSelect ? sortSelect.value : 'popularity.desc'}`;
+    if (searchInput !== "") {
+      isSearching = true;
+      fetchTVShows(currentPage, searchInput);
+    } else {
+      isSearching = false;
+      fetchTVShows(currentPage);
+    }
+  });
 
-    const countrySelect = document.getElementById('country-select');
-    if (countrySelect && countrySelect.value) {
-        baseUrl += `&watch_region=${countrySelect.value}`;
+  navbarSearchField.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") searchBtn.click();
+  });
+  keywordsInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") searchBtn.click();
+  });
+
+  loadMoreBtn.addEventListener("click", () => {
+    currentPage++;
+    let searchInput = navbarSearchField.value.trim();
+    if (searchInput === "") {
+      searchInput = keywordsInput.value.trim();
     }
 
-    const activeGenres = [];
-    document.querySelectorAll('.genre-tag.active').forEach(tag => activeGenres.push(tag.getAttribute('data-id')));
-    if (activeGenres.length > 0) baseUrl += `&with_genres=${activeGenres.join(',')}`;
+    if (isSearching && searchInput !== "") {
+      fetchTVShows(currentPage, searchInput);
+    } else {
+      fetchTVShows(currentPage);
+    }
+  });
 
-    const score = document.getElementById('user-score-slider');
-    const votes = document.getElementById('user-votes-slider');
-    const runtime = document.getElementById('runtime-slider');
-    if (score) baseUrl += `&vote_average.lte=${score.value}`;
-    if (votes) baseUrl += `&vote_count.gte=${votes.value}`;
-    if (runtime) baseUrl += `&with_runtime.lte=${runtime.value}`;
-
-    const langSelect = document.getElementById('lang-select');
-    if (langSelect && langSelect.value) baseUrl += `&with_original_language=${langSelect.value}`;
-
-    return baseUrl;
-}
-
-function fetchTVShows(page, isNewSearch = false) {
-    if (isNewSearch) container.innerHTML = '<div class="loading-text"><i class="fas fa-spinner fa-spin"></i> Searching...</div>';
-    
-    const apiUrl = buildFilterURL(page);
-
-    fetch(apiUrl, options)
-        .then(res => {
-            if (!res.ok) throw new Error("API token xatosi.");
-            return res.json();
-        })
-        .then(data => {
-            if (isNewSearch) container.innerHTML = '';
-            
-            if (!data.results || data.results.length === 0) {
-                if (page === 1) container.innerHTML = '<div class="loading-text">Hech narsa topilmadi.</div>';
-                return;
-            }
-
-            data.results.forEach(show => {
-                const poster = show.poster_path ? `https://image.tmdb.org/t/p/w500${show.poster_path}` : 'https://via.placeholder.com/500x750?text=No+Poster';
-                const dateStr = show.first_air_date ? new Date(show.first_air_date).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'}) : 'N/A';
-
-                container.innerHTML += `
-                    <div class="card">
-                        <div class="card-img-wrapper">
-                            <img src="${poster}" alt="${show.name}">
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title" title="${show.name}">${show.name}</h3>
-                            <p class="card-date">${dateStr}</p>
-                        </div>
-                    </div>
-                `;
-            });
-        })
-        .catch(err => {
-            console.error(err);
-            if (page === 1) {
-                container.innerHTML = '<div class="loading-text" style="color:#e74c3c;">Ma\'lumotni yuklashda xatolik yuz berdi. Iltimos, API tokeningizni tekshiring.</div>';
-            }
-        });
-}
-
-if (searchSubmitBtn) searchSubmitBtn.addEventListener('click', () => { currentPage = 1; fetchTVShows(currentPage, true); });
-if (loadMoreBtn) loadMoreBtn.addEventListener('click', () => { currentPage++; fetchTVShows(currentPage, false); });
-
-document.addEventListener("DOMContentLoaded", () => fetchTVShows(currentPage, true));
+  fetchTVShows(1);
+});

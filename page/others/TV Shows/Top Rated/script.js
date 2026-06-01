@@ -3,7 +3,7 @@ const API_KEY_BEARER =
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
 let currentPage = 1;
-let allFetchedShows = [];
+let allFetchedMovies = [];
 let isSearching = false;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchBtn = document.getElementById("search-submit-btn");
   const searchField = document.querySelector(".search-field");
 
-  async function fetchTVShows(page = 1, searchQuery = "") {
+  async function fetchMovies(page = 1, searchQuery = "") {
     const options = {
       method: "GET",
       headers: {
@@ -30,25 +30,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       if (page === 1) {
-        container.innerHTML = `<div class="loading-text">Loading shows...</div>`;
-        allFetchedShows = [];
+        container.innerHTML = `<div class="loading-text">Loading movies...</div>`;
+        allFetchedMovies = [];
       }
 
-      let url = `https://api.themoviedb.org/3/tv/airing_today?language=en-US&page=${page}`;
+      let url = `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`;
 
       if (searchQuery !== "") {
-        url = `https://api.themoviedb.org/3/search/tv?query=${encodeURIComponent(searchQuery)}&language=en-US&page=${page}`;
+        url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(searchQuery)}&language=en-US&page=${page}`;
       }
 
       const response = await fetch(url, options);
       const data = await response.json();
 
       if (data.results && data.results.length > 0) {
-        allFetchedShows = [...allFetchedShows, ...data.results];
+        allFetchedMovies = [...allFetchedMovies, ...data.results];
         applyFilters();
       } else {
         if (page === 1) {
-          container.innerHTML = `<div class="loading-text">No TV Shows found.</div>`;
+          container.innerHTML = `<div class="loading-text">No Movies found.</div>`;
         }
       }
     } catch (error) {
@@ -58,44 +58,43 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function applyFilters() {
-    let filteredResults = [...allFetchedShows];
+    let filteredResults = [...allFetchedMovies];
 
     const activeGenres = Array.from(
       document.querySelectorAll(".genre-tag.active"),
     ).map((t) => parseInt(t.dataset.id));
     if (activeGenres.length > 0) {
       filteredResults = filteredResults.filter(
-        (show) =>
-          show.genre_ids &&
-          show.genre_ids.some((genreId) => activeGenres.includes(genreId)),
+        (movie) =>
+          movie.genre_ids &&
+          movie.genre_ids.some((genreId) => activeGenres.includes(genreId)),
       );
     }
 
     const minScore = parseFloat(userScoreSlider.value);
     filteredResults = filteredResults.filter(
-      (show) => (show.vote_average || 0) <= minScore,
+      (movie) => (movie.vote_average || 0) <= minScore,
     );
 
     const minVotes = parseInt(userVotesSlider.value);
     if (minVotes > 0) {
       filteredResults = filteredResults.filter(
-        (show) => (show.vote_count || 0) >= minVotes,
+        (movie) => (movie.vote_count || 0) >= minVotes,
       );
     }
 
     const maxRuntime = parseInt(runtimeSlider.value);
     if (maxRuntime < 360) {
-      filteredResults = filteredResults.filter((show) => {
-        if (!show.episode_run_time || show.episode_run_time.length === 0)
-          return true;
-        return show.episode_run_time[0] <= maxRuntime;
+      filteredResults = filteredResults.filter((movie) => {
+        if (!movie.runtime) return true;
+        return movie.runtime <= maxRuntime;
       });
     }
 
     const selectedLang = document.getElementById("lang-select").value;
     if (selectedLang) {
       filteredResults = filteredResults.filter(
-        (show) => show.original_language === selectedLang,
+        (movie) => movie.original_language === selectedLang,
       );
     }
 
@@ -103,16 +102,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const dateTo = document.getElementById("date-to").value;
     if (dateFrom) {
       filteredResults = filteredResults.filter(
-        (show) =>
-          show.first_air_date &&
-          new Date(show.first_air_date) >= new Date(dateFrom),
+        (movie) =>
+          movie.release_date &&
+          new Date(movie.release_date) >= new Date(dateFrom),
       );
     }
     if (dateTo) {
       filteredResults = filteredResults.filter(
-        (show) =>
-          show.first_air_date &&
-          new Date(show.first_air_date) <= new Date(dateTo),
+        (movie) =>
+          movie.release_date &&
+          new Date(movie.release_date) <= new Date(dateTo),
       );
     }
 
@@ -125,59 +124,109 @@ document.addEventListener("DOMContentLoaded", () => {
       filteredResults.sort((a, b) => b.vote_average - a.vote_average);
     } else if (sortBy === "vote_average.asc") {
       filteredResults.sort((a, b) => a.vote_average - b.vote_average);
-    } else if (sortBy === "first_air_date.desc") {
+    } else if (
+      sortBy === "release_date.desc" ||
+      sortBy === "first_air_date.desc"
+    ) {
       filteredResults.sort(
-        (a, b) => new Date(b.first_air_date) - new Date(a.first_air_date),
+        (a, b) =>
+          new Date(b.release_date || b.first_air_date) -
+          new Date(a.release_date || a.first_air_date),
       );
-    } else if (sortBy === "first_air_date.asc") {
+    } else if (
+      sortBy === "release_date.asc" ||
+      sortBy === "first_air_date.asc"
+    ) {
       filteredResults.sort(
-        (a, b) => new Date(a.first_air_date) - new Date(b.first_air_date),
+        (a, b) =>
+          new Date(a.release_date || a.first_air_date) -
+          new Date(b.release_date || b.first_air_date),
       );
     }
 
-    displayShows(filteredResults);
+    displayMovies(filteredResults);
   }
 
-  function displayShows(shows) {
+  function displayMovies(movies) {
     container.innerHTML = "";
 
-    if (shows.length === 0) {
-      container.innerHTML = `<div class="loading-text">No TV Shows match your filter criteria.</div>`;
+    if (movies.length === 0) {
+      container.innerHTML = `<div class="loading-text">No Movies match your filter criteria.</div>`;
       return;
     }
 
-    shows.forEach((show) => {
-      const card = document.createElement("a");
+    let favorites = JSON.parse(localStorage.getItem("favorite_movies")) || [];
+
+    movies.forEach((movie) => {
+      const card = document.createElement("div");
+      card.className = "card";
 
       let currentPath = window.location.pathname;
       let basePath = currentPath.substring(0, currentPath.lastIndexOf("/") + 1);
-      card.href = `${basePath}../../../movieDetail/index.html?id=${show.id}&type=tv`;
+      const detailUrl = `${basePath}../../../movieDetail/index.html?id=${movie.id}&type=movie`;
 
-      card.className = "card";
-      card.style.textDecoration = "none";
-
-      const posterUrl = show.poster_path
-        ? `${IMAGE_BASE_URL}${show.poster_path}`
+      const posterUrl = movie.poster_path
+        ? `${IMAGE_BASE_URL}${movie.poster_path}`
         : "https://via.placeholder.com/500x750?text=No+Poster";
 
-      const releaseDate = show.first_air_date
-        ? new Date(show.first_air_date).toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-          })
-        : "Unknown Date";
+      const movieTitle = movie.title || movie.name;
+      const releaseDate =
+        movie.release_date || movie.first_air_date
+          ? new Date(
+              movie.release_date || movie.first_air_date,
+            ).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })
+          : "Unknown Date";
+
+      const isFavorite = favorites.includes(movie.id);
+      const heartIconClass = isFavorite
+        ? "fas fa-heart favorite-active"
+        : "far fa-heart";
 
       card.innerHTML = `
                 <div class="card-img-wrapper">
-                    <img src="${posterUrl}" alt="${show.name}" loading="lazy">
+                    <a href="${detailUrl}" style="display:block; width:100%; height:100%;">
+                        <img src="${posterUrl}" alt="${movieTitle}" loading="lazy">
+                    </a>
+                    
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title" title="${show.name}">${show.name}</h3>
+                    <a href="${detailUrl}" style="text-decoration:none; color:inherit;">
+                        <h3 class="card-title" title="${movieTitle}">${movieTitle}</h3>
+                    </a>
                     <p class="card-date">${releaseDate}</p>
                 </div>
             `;
       container.appendChild(card);
+    });
+
+    document.querySelectorAll(".heart-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const movieId = parseInt(btn.dataset.id);
+        let currentFavorites =
+          JSON.parse(localStorage.getItem("favorite_movies")) || [];
+        const icon = btn.querySelector("i");
+
+        if (currentFavorites.includes(movieId)) {
+          currentFavorites = currentFavorites.filter((id) => id !== movieId);
+          icon.className = "far fa-heart";
+          icon.classList.remove("favorite-active");
+        } else {
+          currentFavorites.push(movieId);
+          icon.className = "fas fa-heart favorite-active";
+        }
+
+        localStorage.setItem(
+          "favorite_movies",
+          JSON.stringify(currentFavorites),
+        );
+      });
     });
   }
 
@@ -220,10 +269,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (searchInput !== "") {
       isSearching = true;
-      fetchTVShows(currentPage, searchInput);
+      fetchMovies(currentPage, searchInput);
     } else {
       isSearching = false;
-      fetchTVShows(currentPage);
+      fetchMovies(currentPage);
     }
   });
 
@@ -238,11 +287,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchInput = searchField.value.trim();
 
     if (isSearching && searchInput !== "") {
-      fetchTVShows(currentPage, searchInput);
+      fetchMovies(currentPage, searchInput);
     } else {
-      fetchTVShows(currentPage);
+      fetchMovies(currentPage);
     }
   });
 
-  fetchTVShows(1);
+  fetchMovies(1);
 });

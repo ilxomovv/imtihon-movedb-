@@ -163,3 +163,19 @@ if (navInput) {
     if (e.key === "Enter") handleSearch(navInput.value);
   });
 }
+
+const loginNavBtn = document.querySelector('button.login');
+const joinNavBtn  = document.querySelector('button.join');
+ 
+if (loginNavBtn) {
+  loginNavBtn.addEventListener('click', () => {
+    // home page/ dan others/login_page/ ga o'tish
+    window.location.href = '../others/login_page/index.html';
+  });
+}
+ 
+if (joinNavBtn) {
+  joinNavBtn.addEventListener('click', () => {
+    window.location.href = '../others/login_page/index.html';
+  });
+}
